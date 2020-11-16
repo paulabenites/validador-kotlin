@@ -11,7 +11,7 @@ token = (
     'VAL','VAR','LISTOF',"SETOF","MAPOF"
 )
 
-reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP')
+reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP','TO','READLINE')
 
 tokens=token+reserveda
 # Regular expression rules for simple tokens
@@ -125,6 +125,16 @@ def t_FOR(token):
     return token
 def t_STEP(token):
     r'step'
+    token.value = str(token.value)
+    return token
+
+def t_TO(token):
+    r'to'
+    token.value = str(token.value)
+    return token
+
+def t_READLINE(token):
+    r'readLine'
     token.value = str(token.value)
     return token
 
