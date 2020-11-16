@@ -29,6 +29,8 @@ t_PUNTO = r'\.'
 t_PUNTOS = r'\.\.'
 t_COMA = r'\,'
 t_CADENA_DE_CARACTERES = r'(\".*\"|[a-zA-Z]+\s*)'
+# t_CADENA_DE_CARACTERES = r'(\"[^["]]*\"|[a-zA-Z]+\s*)'
+
 t_TAB = r'\t'
 t_EQUAL = r'\=\='
 t_NOTEQ = r'\!\='
@@ -96,7 +98,7 @@ def t_VAR(token):
 
 
 def t_PRINT(token):
-    r'print$'
+    r'print'
     token.value = str(token.value)
     return token
 

@@ -1,10 +1,51 @@
+"Variables"
+val a: Int = 1
+val b = 5
+val c: Int
+
+"Tipos de datos"
+val one = 1
+val two: Int = 2
+val pi = 3.14
+val e: Double = 1.932214124
+var falso: Boolean = false
+var verdadero: Boolean = true
 
 "Tipos de datos Estructurados"
 val s = "abc"
 val lista = listOf("uno", "dos", "tres")
 val conjunto = setOf(1,2,3)
 val numberMap = mapOf("keyA" to 1, "keyB" to 2)
-while for if
-println
+
+"Impresion y Lectura de String"
+print(item)
+val c = "Hello world"
+println(c)
+print("Enter text: ")
+val stringInput = readLine()
+
+"Condiciones y operaciones lógicas"
+val a= 5>2
+val b= 5<2
+val c= 5==2
+val d= 5!=2
+
+"Operaciones matemáticas"
+val c = 1 + 3
+val a = 2 - 4
+val z = 1 * 7
+val x = 5 / 2
+
+"Estructura de control "
+
+for (i in 0..8){
+	println("taller ply")
+}
+
+for (i in 0..10 step 2){
+}
+while (2 < 8) {
+    print ("hola mundo")
+}
 
 
