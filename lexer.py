@@ -11,7 +11,8 @@ token = (
     'VAL','VAR','LISTOF',"SETOF","MAPOF"
 )
 
-reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP','TO','READLINE','SIZE','ISEMPTY')
+reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP',
+             'TO','READLINE','SIZE','ISEMPTY','KEYS','VALUES')
 
 tokens=token+reserveda
 # Regular expression rules for simple tokens
@@ -182,6 +183,15 @@ def t_MAPOF(token):
     token.value = str(token.value)
     return token
 
+def t_KEYS(token):
+    r'keys'
+    token.value = str(token.value)
+    return token
+
+def t_VALUES(token):
+    r'values'
+    token.value = str(token.value)
+    return token
 
 
 def t_ID(token):

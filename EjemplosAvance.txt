@@ -48,3 +48,12 @@ while (2 < 8) {
     print ("hola mundo")
 }
 
+"Funciones con diccionarios"
+NumberMap.keys
+NumberMap.values
+
+"Operadores logicos"
+a || b
+a && b
+!a
+
