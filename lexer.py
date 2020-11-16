@@ -161,7 +161,11 @@ def t_WHILE(token):
     r'while'
     token.value = str(token.value)
     return token
-
+# Error handling rule
+def t_error(token):
+    print("Error caracter no definido en token:'%s'" % token.value[0])
+    token.lexer.skip(1)
+    return token
 # Codigo para leer Archivo
 
 file =open("EjemplosAvance.txt", "r")
