@@ -137,6 +137,20 @@ def t_FUN(token):
     token.value = str(token.value)
     return token
 
+def t_FOR(token):
+    r'for'
+    token.value = str(token.value)
+    return token
+def t_STEP(token):
+    r'step'
+    token.value = str(token.value)
+    return token
+
+def t_IN(token):
+    r'in'
+    token.value = str(token.value)
+    return token
+
 
 
 # Codigo para leer Archivo
