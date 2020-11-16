@@ -8,7 +8,7 @@ token = (
     'EQUALS', 'DOSPUNTOS', 'COMA',
     'PUNTO','PUNTOS','CADENA_DE_CARACTERES', 'EQUAL', 'NOTEQ', 'LARGE', 'SMALL', 'LRGEQ', 'SMLEQ', 'ID', 'FALSO',
     'VERDAD', 'IPAR', 'DPAR', "INDENT","Int",'Double','Boolean','AND','NOT','OR','NEGATION','ILLAVE','DLLAVE',
-    'VAL','VAR'
+    'VAL','VAR','LISTOF',"SETOF","MAPOF"
 )
 
 reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP')
@@ -112,21 +112,6 @@ def t_RETURN(token):
     token.value = str(token.value)
     return token
 
-
-def t_ID(token):
-    '([a-zA-Z_][a-zA-Z0-9_]*)'
-    token.value = str(token.value)
-    return token
-
-
-def t_newline(token):
-    r'\n+'
-    token.lexer.lineno += len(token.value)
-
-def t_whitespace(token):
-    r'\s+'
-    pass
-
 def t_FUN(token):
     r'fun'
     token.value = str(token.value)
@@ -161,6 +146,38 @@ def t_WHILE(token):
     r'while'
     token.value = str(token.value)
     return token
+
+def t_LISTOF(token):
+    r'listOf'
+    token.value = str(token.value)
+    return token
+
+def t_SETOF(token):
+    r'setOf'
+    token.value = str(token.value)
+    return token
+
+def t_MAPOF(token):
+    r'mapOf'
+    token.value = str(token.value)
+    return token
+
+
+
+def t_ID(token):
+    '([a-zA-Z_][a-zA-Z0-9_]*)'
+    token.value = str(token.value)
+    return token
+
+
+def t_newline(token):
+    r'\n+'
+    token.lexer.lineno += len(token.value)
+
+def t_whitespace(token):
+    r'\s+'
+    pass
+
 # Error handling rule
 def t_error(token):
     print("Error caracter no definido en token:'%s'" % token.value[0])
