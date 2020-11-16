@@ -66,13 +66,6 @@ def t_Double(token):
     token.value = str(token.value)
     return token
 
-
-def t_DOUBLE(t):
-    r'\d+\.\d+'
-    t.value = float(t.value[::])
-    return t
-
-
 def t_Boolean(token):
     r'Boolean'
     token.value = str(token.value)
@@ -171,7 +164,7 @@ def t_WHILE(token):
 
 # Codigo para leer Archivo
 
-file =open("codigo.txt", "r")
+file =open("EjemplosAvance.txt", "r")
 if file.mode=="r":
     datos=file.read()
 
