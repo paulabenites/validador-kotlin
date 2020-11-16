@@ -164,6 +164,11 @@ def t_ELSE(token):
     token.value = str(token.value)
     return token
 
+def t_WHILE(token):
+    r'while'
+    token.value = str(token.value)
+    return token
+
 # Codigo para leer Archivo
 
 file =open("codigo.txt", "r")
