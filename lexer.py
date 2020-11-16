@@ -11,7 +11,30 @@ token = (
     'VAL','VAR'
 )
 
+reserveda= ('ELSE','IF','RETURN','PRINT', 'WHILE','DEF')
 
+tokens=token+reserveda
+# Regular expression rules for simple tokens
+t_PLUS    = r'\+'
+t_MINUS   = r'-'
+t_TIMES   = r'\*'
+t_DIVIDE  = r'/'
+t_IPAR  = r'\('
+t_DPAR  = r'\)'
+t_EQUALS  = r'='
+t_DOSPUNTOS = r':'
+t_PUNTO     =r'\.'
+t_COMA      =r'\,'
+t_CADENA_DE_CARACTERES = r'(\".*\"|[a-zA-Z]+\s*)'
+t_TAB       =r'\t'
+
+
+t_EQUAL   = r'\=\='
+t_NOTEQ   = r'\!\='
+t_LARGE   = r'\>'
+t_SMALL   = r'\<'
+t_LRGEQ   = r'\>\='
+t_SMLEQ   = r'\<\='
 
 
 
