@@ -11,29 +11,31 @@ token = (
     'VAL','VAR'
 )
 
-reserveda= ('ELSE','IF','RETURN','PRINT', 'WHILE','DEF')
+reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP')
 
 tokens=token+reserveda
 # Regular expression rules for simple tokens
-t_PLUS    = r'\+'
-t_MINUS   = r'-'
-t_TIMES   = r'\*'
-t_DIVIDE  = r'/'
-t_IPAR  = r'\('
-t_DPAR  = r'\)'
-t_EQUALS  = r'='
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_IPAR = r'\('
+t_DPAR = r'\)'
+t_ILLAVE=r'\{'
+t_DLLAVE=r'\}'
+t_EQUALS = r'='
 t_DOSPUNTOS = r':'
-t_PUNTO     =r'\.'
-t_COMA      =r'\,'
+t_PUNTO = r'\.'
+t_PUNTOS = r'\.\.'
+t_COMA = r'\,'
 t_CADENA_DE_CARACTERES = r'(\".*\"|[a-zA-Z]+\s*)'
-t_TAB       =r'\t'
-t_ignore_COMMENT = r'\/\/.*'
-t_EQUAL   = r'\=\='
-t_NOTEQ   = r'\!\='
-t_LARGE   = r'\>'
-t_SMALL   = r'\<'
-t_LRGEQ   = r'\>\='
-t_SMLEQ   = r'\<\='
+t_TAB = r'\t'
+t_EQUAL = r'\=\='
+t_NOTEQ = r'\!\='
+t_LARGE = r'\>'
+t_SMALL = r'\<'
+t_LRGEQ = r'\>\='
+t_SMLEQ = r'\<\='
 t_AND = r'\&\&'
 t_OR  = r'\|\|'
 t_NEGATION=r'\!'
@@ -151,7 +153,16 @@ def t_IN(token):
     token.value = str(token.value)
     return token
 
+def t_IF(token):
+    r'if'
+    token.value = str(token.value)
+    return token
 
+def t_ELSE(token):
+    r'else'
+    r'else'
+    token.value = str(token.value)
+    return token
 
 # Codigo para leer Archivo
 
