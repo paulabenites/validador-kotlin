@@ -5,13 +5,13 @@ import ply.lex as lex
 
 token = (
     'INT', 'DOUBLE', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'TAB', 'newline',
-    'EQUALS', 'DOSPUNTOS', 'COMA','STRING'
+    'EQUALS', 'DOSPUNTOS', 'COMA','STRING',
     'PUNTO','PUNTOS','CADENA_DE_CARACTERES', 'EQUAL', 'NOTEQ', 'LARGE', 'SMALL', 'LRGEQ', 'SMLEQ', 'ID', 'FALSO',
     'VERDAD', 'IPAR', 'DPAR', "INDENT","Int",'Double','Boolean','AND','NOT','OR','NEGATION','ILLAVE','DLLAVE',
     'VAL','VAR'
 )
 
-reserveda= ('ELSE','IF','RETURN','PRINT','println', 'WHILE','FOR','FUN',"valius")
+reserveda= ('ELSE','IF','RETURN','PRINT','println', 'WHILE','FOR','FUN',"values")
 
 tokens=token+reserveda
 # Regular expression rules for simple tokens
@@ -40,11 +40,6 @@ t_NEGATION=r'\!'
 
 
 # Reglas de correspondencia
-
-def t_DOUBLE(t):
-    r'\d+\.\d+'
-    t.value = float(t.value[::])
-    return t
 
 
 def t_INT(t):
@@ -155,15 +150,23 @@ def t_IN(token):
     r'in'
     token.value = str(token.value)
     return token
-def t_valius(token):
-    r'valius'
+
+
+def t_values(token):
+    r'values'
     token.value = str(token.value)
+    return token
+
+# Error handling rule
+def t_error(token):
+    print("Error caracter no definido en token:'%s'" % token.value[0])
+    token.lexer.skip(1)
     return token
 
 
 # Codigo para leer Archivo
 
-file =open("codigo.txt", "r")
+file =open("EjemplosBenites.txt", "r")
 if file.mode=="r":
     datos=file.read()
 
