@@ -1,0 +1,54 @@
+"Variables"
+val dato: Double = 5.90
+var resultado = Boolean
+val contador: Int
+
+"Tipos de datos"
+var f: Boolean = false
+var v: Boolean = true
+val first = 1
+val second: Int = 2
+val e = 8.99
+var d: Double = 4.6787
+
+"Tipos de datos Estructurados"
+val texto = "Christian fue a su casa"
+val listaBool = listOf(true,false,true)
+val conjuntoLetras = setOf("A","B","C")
+val numberMap = mapOf("keyA" to 1, "keyB" to 2)
+
+"Impresion y Lectura de String"
+val mensaje = "Soy Elisa"
+println(mensaje)
+print("Ingrese datos: ")
+val Input = readLine()
+print("hola Scarlet")
+
+"Condiciones y operaciones lógicas"
+val op1= 9>10
+val op2= 23<67
+val op3= 1==1
+val op4= 7!=0
+
+"Operaciones matemáticas"
+val s = 10 + 7
+val r = 5 - 4
+val m = 4 * 7
+val d = 10 / 2
+
+"Estructura de control "
+
+for (i in 2..14){
+	println("lista")
+}
+
+for (i in 5..50 step 5){
+}
+while (e < 8) {
+    print ("falso")
+}
+
+"Operadores logicos"
+true||false
+v && v
+!f
