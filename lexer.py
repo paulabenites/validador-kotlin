@@ -12,7 +12,7 @@ token = (
 )
 
 #Definicion de palagbras reservadar ---> Paula Benites
-reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN',"values",'TO','READLINE')
+reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN',"values","keys",'TO','READLINE')
 
 tokens=token+reserveda
 # Regular expression rules for simple tokens -- Paula Benites
@@ -50,6 +50,11 @@ t_NEGATION=r'\!'
 
 def t_values(token):
     r'values\s'
+    token.value = str(token.value)
+    return token
+
+def t_keys(token):
+    r'keys\s'
     token.value = str(token.value)
     return token
 
@@ -234,7 +239,7 @@ def t_error(token):
 
 # Codigo para leer Archivo --> Victor Alvarado
 
-file =open("EjemplosBenites.txt", "r")
+file =open("EjemplosAlvarado.txt", "r")
 if file.mode=="r":
     datos=file.read()
 
