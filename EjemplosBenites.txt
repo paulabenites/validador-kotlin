@@ -53,9 +53,6 @@ diccionario.keys
 diccionario.values
 
 "Operadores logicos"
-valorA || valorB
-valorA && valorB
-!valorA
-
-println(a)
-
+cantidadA || cantidadB
+cantidadA && cantidadB
+!cantidadA
