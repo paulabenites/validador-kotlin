@@ -2,7 +2,7 @@ import ply.lex as lex
 
 
 
-
+# token hechos por --> Victor Alvarado
 token = (
     'INT', 'DOUBLE', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'TAB', 'newline',
     'EQUALS', 'DOSPUNTOS', 'COMA',
@@ -11,11 +11,15 @@ token = (
     'VAL','VAR','LISTOF',"SETOF","MAPOF"
 )
 
+
+# Palabras reservadas hechos por --> Paula Benites
 reserveda = ('ELSE', 'IF', 'RETURN', 'PRINT','println', 'WHILE', 'FUN','IN','FOR','STEP',
              'TO','READLINE','SIZE','ISEMPTY','KEYS','VALUES')
 
+
 tokens=token+reserveda
-# Regular expression rules for simple tokens
+
+# Regular expression rules for simple tokens hechas por -- > Paula Benites
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -45,7 +49,7 @@ t_NEGATION=r'\!'
 
 
 # Reglas de correspondencia
-
+# funciones para palabra reservada --> Scarlet espinoza excepto las estructuras de control yo hice while
 def t_DOUBLE(t):
     r'\d+\.\d+'
     t.value = float(t.value[::])
@@ -120,10 +124,12 @@ def t_FUN(token):
     token.value = str(token.value)
     return token
 
+# Estructura de control FOR --> Victor Alvarado
 def t_FOR(token):
     r'for'
     token.value = str(token.value)
     return token
+
 def t_STEP(token):
     r'step'
     token.value = str(token.value)
@@ -152,6 +158,7 @@ def t_IN(token):
     token.value = str(token.value)
     return token
 
+# Paula Benites estructura de control if y else
 def t_IF(token):
     r'if'
     token.value = str(token.value)
@@ -163,6 +170,7 @@ def t_ELSE(token):
     token.value = str(token.value)
     return token
 
+# Estructura de control WHILE -->  Scarlet Espinoza
 def t_WHILE(token):
     r'while'
     token.value = str(token.value)
@@ -213,7 +221,9 @@ def t_error(token):
     print("Error caracter no definido en token:'%s'" % token.value[0])
     token.lexer.skip(1)
     return token
-# Codigo para leer Archivo
+
+
+# Codigo para leer Archivo --> Victor Alvarado
 
 file =open("EjemplosAvance.txt", "r")
 if file.mode=="r":
