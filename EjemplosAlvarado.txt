@@ -1,7 +1,9 @@
 "Variables"
-val a: Int = 1
+valius a: Int = 1
 val b = 5
-val c: Int
+variable c: Int
+var c: Int
+
 
 "Tipos de datos"
 val one = 1

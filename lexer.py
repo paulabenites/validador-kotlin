@@ -16,8 +16,8 @@ reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN
 tokens=token+reserveda
 # Regular expression rules for simple tokens
 t_PLUS    = r'\+'
-ILLAVE    = r'{+'
-DLLAVE    = r'}+'
+t_ILLAVE    = r'\{'
+t_DLLAVE    = r'\}'
 t_MINUS   = r'-'
 t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
@@ -40,6 +40,10 @@ t_AND = r'\&\&'
 t_OR  = r'\|\|'
 t_NEGATION=r'\!'
 
+t_VAR= r'var'
+t_VAL= r'val'
+
+
 
 # Reglas de correspondencia
 
@@ -60,6 +64,9 @@ def t_STRING(token):
     r'String'
     token.value = str(token.value)
     return token
+
+
+
 
 def t_Double(token):
     r'Double'
@@ -90,16 +97,6 @@ def t_FALSO(token):
     token.value = str(token.value)
     return token
 
-def t_VAL(token):
-    r'val'
-    token.value = str(token.value)
-    return token
-
-
-def t_VAR(token):
-    r'var'
-    token.value = str(token.value)
-    return token
 
 def t_SIZE(token):
     r'size'
@@ -144,7 +141,7 @@ def t_MAPOF(token):
 
 
 def t_PRINT(token):
-    r'print$'
+    r'print'
     token.value = str(token.value)
     return token
 
@@ -209,7 +206,7 @@ def t_error(token):
 
 # Codigo para leer Archivo
 
-file =open("EjemplosBenites.txt", "r")
+file =open("EjemplosAlvarado.txt", "r")
 if file.mode=="r":
     datos=file.read()
 
