@@ -139,6 +139,20 @@ def t_WHILE(token):
     return token
 
 
+#Paula Benites hice el If y Else
+
+def t_IF(token):
+    r'if'
+    token.value = str(token.value)
+    return token
+
+def t_ELSE(token):
+    r'else'
+    r'else'
+    token.value = str(token.value)
+    return token
+
+#Paula Benites hice listof, setOf y mapOf
 def t_LISTOF(token):
     r'listOf'
     token.value = str(token.value)
@@ -220,7 +234,7 @@ def t_error(token):
 
 # Codigo para leer Archivo --> Victor Alvarado
 
-file =open("EjemplosScarletEspinoza.txt", "r")
+file =open("EjemplosBenites.txt", "r")
 if file.mode=="r":
     datos=file.read()
 

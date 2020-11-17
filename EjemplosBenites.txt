@@ -48,6 +48,12 @@ while (valor < 8) {
     print ("Hola mundo")
 }
 
+if (a > b) {
+} else {
+}
+
+if (a<b) else b
+
 "Funciones con diccionarios"
 diccionario.keys
 diccionario.values
