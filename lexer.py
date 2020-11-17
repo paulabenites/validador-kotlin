@@ -48,17 +48,17 @@ t_NEGATION=r'\!'
 # Reglas de correspondencia
 
 def t_values(token):
-    r'values'
+    r'values\s'
     token.value = str(token.value)
     return token
 
 def t_VAR(token):
-    r'var'
+    r'var\s'
     token.value = str(token.value)
     return token
 
 def t_VAL(token):
-    r'val'
+    r'val\s'
     token.value = str(token.value)
     return token
 
@@ -74,7 +74,7 @@ def t_Int(token):
 
 
 def t_STRING(token):
-    r'String'
+    r'String=\String\s'
     token.value = str(token.value)
     return token
 
@@ -82,7 +82,7 @@ def t_STRING(token):
 
 
 def t_Double(token):
-    r'Double'
+    r'Double=|Double\s'
     token.value = str(token.value)
     return token
 
@@ -94,25 +94,25 @@ def t_DOUBLE(t):
 
 
 def t_Boolean(token):
-    r'Boolean'
+    r'Boolean=|Boolean\s'
     token.value = str(token.value)
     return token
 
 
 def t_VERDAD(token):
-    r'true'
+    r'true\s'
     token.value = str(token.value)
     return token
 
 
 def t_FALSO(token):
-    r'false'
+    r'false\s'
     token.value = str(token.value)
     return token
 
 
 def t_SIZE(token):
-    r'size'
+    r'size\s'
     token.value = str(token.value)
     return token
 
@@ -122,7 +122,7 @@ def t_ISEMPTY(token):
     return token
 
 def t_TO(token):
-    r'to'
+    r'to\s'
     token.value = str(token.value)
     return token
 
@@ -132,7 +132,7 @@ def t_READLINE(token):
     return token
 
 def t_WHILE(token):
-    r'while'
+    r'while\s'
     token.value = str(token.value)
     return token
 
@@ -165,7 +165,7 @@ def t_PRINT(token):
 
 
 def t_RETURN(token):
-    r'return'
+    r'return\s'
     token.value = str(token.value)
     return token
 
@@ -194,12 +194,12 @@ def t_FOR(token):
     token.value = str(token.value)
     return token
 def t_STEP(token):
-    r'step'
+    r'step\s'
     token.value = str(token.value)
     return token
 
 def t_IN(token):
-    r'in'
+    r'in\s'
     token.value = str(token.value)
     return token
 
