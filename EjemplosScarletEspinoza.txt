@@ -13,9 +13,9 @@ var d: Double = 4.6787
 
 "Tipos de datos Estructurados"
 val texto = "Christian fue a su casa"
-val listaBool = listOf(true,false,true)
+val listaBool = listOf(true ,false ,true )
 val conjuntoLetras = setOf("A","B","C")
-val numberMap = mapOf("keyA" to 1, "keyB" to 2)
+val mapas = mapOf("keyA" to 1, "keyB" to 2)
 
 "Impresion y Lectura de String"
 val mensaje = "Soy Elisa"
@@ -52,3 +52,8 @@ while (e < 8) {
 true||false
 v && v
 !f
+
+
+"Funciones con diccionarios"
+mapas.keys
+mapas.values

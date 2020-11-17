@@ -2,7 +2,7 @@ import ply.lex as lex
 
 
 
-
+#Definicion d elas lista de tokens --> Victor Alvardado
 token = (
     'INT', 'DOUBLE', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'TAB', 'newline',
     'EQUALS', 'DOSPUNTOS', 'COMA','STRING',
@@ -11,10 +11,11 @@ token = (
     'VAL','VAR','LISTOF',"SETOF","MAPOF","STEP","IN"
 )
 
+#Definicion de palagbras reservadar ---> Paula Benites
 reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN',"values",'TO','READLINE')
 
 tokens=token+reserveda
-# Regular expression rules for simple tokens
+# Regular expression rules for simple tokens -- Paula Benites
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'
 t_DLLAVE    = r'\}'
@@ -44,7 +45,7 @@ t_NEGATION=r'\!'
 # t_VAL= r'val'
 
 
-
+# definicion de la funciones exectp estructuras de control -- > Scarlet Espinoza
 # Reglas de correspondencia
 
 def t_values(token):
@@ -131,6 +132,7 @@ def t_READLINE(token):
     token.value = str(token.value)
     return token
 
+# SCARLET ESPINOZA HICE EL WHILE
 def t_WHILE(token):
     r'while\s'
     token.value = str(token.value)
@@ -141,12 +143,12 @@ def t_LISTOF(token):
     r'listOf'
     token.value = str(token.value)
     return token
-
+# SCARLET ESPINOZA HICE EL SET OF 
 def t_SETOF(token):
     r'setOf'
     token.value = str(token.value)
     return token
-
+#VICTOR ALVARADO HICE EL MAPOF
 def t_MAPOF(token):
     r'mapOf'
     token.value = str(token.value)
@@ -168,6 +170,8 @@ def t_RETURN(token):
     r'return\s'
     token.value = str(token.value)
     return token
+
+#VICTOR ALVARADO HICE EL FOR
 
 def t_FOR(token):
     r'for'
@@ -207,16 +211,6 @@ def t_whitespace(token):
     r'\s+'
     pass
 
-
-
-
-
-
-
-
-
-
-
 # Error handling rule
 def t_error(token):
     print("Error caracter no definido en token:'%s'" % token.value[0])
@@ -224,9 +218,9 @@ def t_error(token):
     return token
 
 
-# Codigo para leer Archivo
+# Codigo para leer Archivo --> Victor Alvarado
 
-file =open("EjemplosBenites.txt", "r")
+file =open("EjemplosScarletEspinoza.txt", "r")
 if file.mode=="r":
     datos=file.read()
 
