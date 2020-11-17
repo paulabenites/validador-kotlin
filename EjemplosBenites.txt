@@ -1,0 +1,59 @@
+"Variables"
+val name: String = "Paula"
+val lastname = "Benites"
+val n: Int
+n = 5
+
+"Tipos de datos"
+val one: Int =  1
+val two: Double = 2.22
+var verdadero : Boolean = true
+
+"Tipos de datos Estructurados"
+val item = "a"
+val vocabulario= listOf("a", "b", "c")
+val conjunto = setOf("c","a","b")
+val mapa= mapOf("clave1" to 1, "clave2" to 2)
+
+"Impresion y Lectura de String"
+print(item)
+val name = "Paula Benites"
+println(name)
+print("Paula")
+val valorinput = readLine()
+
+"Condiciones y operaciones lógicas"
+val mayor= 10>1
+val menor= 1<10
+val igual= 10==10
+val diferente= 5!=2
+
+"Operaciones matemáticas"
+val suma = 1 + 2
+val resta = 2 - 2
+val multiplicacion = 10 * 74
+multiplicacion = multiplicacion + suma
+val divid = multiplicacion / 2
+
+"Estructura de control "
+
+for (i in 0..10){
+	println("Hola mundo")
+}
+
+for (i in 0..20 step 2){
+	print("Hola mundo")
+}
+while (valor < 8) {
+    print ("Hola mundo")
+}
+
+"Funciones con diccionarios"
+diccionario.keys
+diccionario.values
+
+"Operadores logicos"
+valorA || valorB
+valorA && valorB
+!valorA
+
