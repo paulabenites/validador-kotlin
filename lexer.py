@@ -8,7 +8,7 @@ token = (
     'EQUALS', 'DOSPUNTOS', 'COMA','STRING',
     'PUNTO','PUNTOS','CADENA_DE_CARACTERES', 'EQUAL', 'NOTEQ', 'LARGE', 'SMALL', 'LRGEQ', 'SMLEQ', 'ID', 'FALSO',
     'VERDAD', 'IPAR', 'DPAR', "INDENT","Int",'Double','Boolean','AND','NOT','OR','NEGATION','ILLAVE','DLLAVE',
-    'VAL','VAR','LISTOF',"SETOF","MAPOF"
+    'VAL','VAR','LISTOF',"SETOF","MAPOF","STEP","IN"
 )
 
 reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN',"values",'TO','READLINE')
@@ -169,12 +169,35 @@ def t_RETURN(token):
     token.value = str(token.value)
     return token
 
+def t_FOR(token):
+    r'for'
+    token.value = str(token.value)
+    return token
+
+def t_FUN(token):
+    r'fun'
+    token.value = str(token.value)
+    return token
+
+
+
+def t_STEP(token):
+    r'step\s'
+    token.value = str(token.value)
+    return token
+
+
+def t_IN(token):
+    r'in\s'
+    token.value = str(token.value)
+    return token
+
+
 
 def t_ID(token):
     '([a-zA-Z_][a-zA-Z0-9_]*)'
     token.value = str(token.value)
     return token
-
 
 def t_newline(token):
     r'\n+'
@@ -184,24 +207,12 @@ def t_whitespace(token):
     r'\s+'
     pass
 
-def t_FUN(token):
-    r'fun'
-    token.value = str(token.value)
-    return token
 
-def t_FOR(token):
-    r'for'
-    token.value = str(token.value)
-    return token
-def t_STEP(token):
-    r'step\s'
-    token.value = str(token.value)
-    return token
 
-def t_IN(token):
-    r'in\s'
-    token.value = str(token.value)
-    return token
+
+
+
+
 
 
 
