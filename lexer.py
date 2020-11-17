@@ -40,19 +40,32 @@ t_AND = r'\&\&'
 t_OR  = r'\|\|'
 t_NEGATION=r'\!'
 
-t_VAR= r'var'
-t_VAL= r'val'
+# t_VAR= r'var'
+# t_VAL= r'val'
 
 
 
 # Reglas de correspondencia
 
+def t_values(token):
+    r'values'
+    token.value = str(token.value)
+    return token
+
+def t_VAR(token):
+    r'var'
+    token.value = str(token.value)
+    return token
+
+def t_VAL(token):
+    r'val'
+    token.value = str(token.value)
+    return token
 
 def t_INT(t):
     r'\d+'
     t.value = int(t.value)
     return t
-
 
 def t_Int(token):
     r'Int'
@@ -140,14 +153,13 @@ def t_MAPOF(token):
     return token
 
 
-def t_PRINT(token):
-    r'print'
+def t_println(token):
+    r'println'
     token.value = str(token.value)
     return token
 
-
-def t_println(token):
-    r'println'
+def t_PRINT(token):
+    r'print'
     token.value = str(token.value)
     return token
 
@@ -192,10 +204,7 @@ def t_IN(token):
     return token
 
 
-def t_values(token):
-    r'values'
-    token.value = str(token.value)
-    return token
+
 
 # Error handling rule
 def t_error(token):
@@ -206,7 +215,7 @@ def t_error(token):
 
 # Codigo para leer Archivo
 
-file =open("EjemplosAlvarado.txt", "r")
+file =open("EjemplosBenites.txt", "r")
 if file.mode=="r":
     datos=file.read()
 
