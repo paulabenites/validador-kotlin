@@ -56,16 +56,3 @@ diccionario.values
 cantidadA || cantidadB
 cantidadA && cantidadB
 !cantidadA
-valora
-Boolean =
-Boolean=
-valor
-val
-
-values
-for(A)
-fun
-step in
-while
-print(
-println asasas
