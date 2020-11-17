@@ -157,11 +157,12 @@ def t_ELSE(token):
     token.value = str(token.value)
     return token
 
-#Paula Benites hice listof, setOf y mapOf
+#Paula Benites hice listof
 def t_LISTOF(token):
     r'listOf'
     token.value = str(token.value)
     return token
+
 # SCARLET ESPINOZA HICE EL SET OF 
 def t_SETOF(token):
     r'setOf'
