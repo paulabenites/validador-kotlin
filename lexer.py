@@ -8,14 +8,16 @@ token = (
     'EQUALS', 'DOSPUNTOS', 'COMA','STRING',
     'PUNTO','PUNTOS','CADENA_DE_CARACTERES', 'EQUAL', 'NOTEQ', 'LARGE', 'SMALL', 'LRGEQ', 'SMLEQ', 'ID', 'FALSO',
     'VERDAD', 'IPAR', 'DPAR', "INDENT","Int",'Double','Boolean','AND','NOT','OR','NEGATION','ILLAVE','DLLAVE',
-    'VAL','VAR'
+    'VAL','VAR','LISTOF',"SETOF","MAPOF"
 )
 
-reserveda= ('ELSE','IF','RETURN','PRINT','println', 'WHILE','FOR','FUN',"values")
+reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN',"values",'TO','READLINE')
 
 tokens=token+reserveda
 # Regular expression rules for simple tokens
 t_PLUS    = r'\+'
+ILLAVE    = r'{+'
+DLLAVE    = r'}+'
 t_MINUS   = r'-'
 t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
@@ -96,6 +98,47 @@ def t_VAL(token):
 
 def t_VAR(token):
     r'var'
+    token.value = str(token.value)
+    return token
+
+def t_SIZE(token):
+    r'size'
+    token.value = str(token.value)
+    return token
+
+def t_ISEMPTY(token):
+    r'isEmpty'
+    token.value = str(token.value)
+    return token
+
+def t_TO(token):
+    r'to'
+    token.value = str(token.value)
+    return token
+
+def t_READLINE(token):
+    r'readLine'
+    token.value = str(token.value)
+    return token
+
+def t_WHILE(token):
+    r'while'
+    token.value = str(token.value)
+    return token
+
+
+def t_LISTOF(token):
+    r'listOf'
+    token.value = str(token.value)
+    return token
+
+def t_SETOF(token):
+    r'setOf'
+    token.value = str(token.value)
+    return token
+
+def t_MAPOF(token):
+    r'mapOf'
     token.value = str(token.value)
     return token
 
