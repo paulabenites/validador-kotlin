@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOLEAN CADENA_DE_CARACTERES CAPITALIZE COMA DCOR DECIMAL DIVIDE DLLAVE DOSPUNTOS DOUBLE DPAR ELSE ENTERO EQUAL EQUALS FALSE FIRST FOR FUN ICOR ID IF ILLAVE IN INDENT INT IPAR ISEMPTY KEYS LARGE LISTOF LRGEQ MAPOF MINUS NEGATION NOT NOTEQ OR PAIR PLUS PRINT PRINTLN PUNTO PUNTOS READLINE RETURN SETOF SIZE SLICE SMALL SMLEQ STEP STRING TAB TIMES TO TRUE VAL VALUES VAR WHILE newlinealgoritmo : iniVariable\n    iniVariable : iniVar\n                  | iniVal\n    iniVar : VAR ID EQUALS valor\n            | VAR ID  DOSPUNTOS INT EQUALS ENTERO\n            | VAR ID  DOSPUNTOS DOUBLE EQUALS DECIMAL\n            | VAR ID  DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES\n    iniVal : VAL ID EQUALS valor\n            | VAL ID  DOSPUNTOS INT EQUALS ENTERO\n            | VAL ID  DOSPUNTOS DOUBLE EQUALS DECIMAL\n            | VAL ID  DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES\n    valor : ENTERO\n            | DECIMAL\n            | CADENA_DE_CARACTERES\n    '
+_lr_signature = 'AND BOOLEAN CADENA_DE_CARACTERES CAPITALIZE COMA DCOR DECIMAL DIVIDE DLLAVE DOSPUNTOS DOUBLE DPAR ELSE ENTERO EQUAL EQUALS FALSE FIRST FOR FUN ICOR ID IF ILLAVE IN INDENT INT IPAR ISEMPTY KEYS LARGE LISTOF LRGEQ MAPOF MINUS NEGATION NOT NOTEQ OR PAIR PLUS PRINT PRINTLN PUNTO PUNTOS READLINE RETURN SETOF SIZE SLICE SMALL SMLEQ STEP STRING TAB TIMES TO TRUE VAL VALUES VAR WHILE newlinealgoritmo : iniVariable\n                  | expresion\n    iniVariable : variable ID tipoDeDato\n                    | variable ID EQUALS valor\n                    | variable ID EQUALS valorBoolean\n\n    variable : VAR\n                 | VAL\n    tipoDeDato : DOSPUNTOS INT EQUALS ENTERO\n            | DOSPUNTOS DOUBLE EQUALS DECIMAL\n            | DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES\n            | DOSPUNTOS BOOLEAN EQUALS valorBoolean\n    expresion : valor\n\n    expresion : valor operadorMat expresionoperadorMat : PLUS\n                    | MINUS\n                    | TIMES\n                    | DIVIDE\n    valor : ENTERO\n            | DECIMAL\n            | CADENA_DE_CARACTERES\n\n    valorBoolean : TRUE\n                     | FALSE\n\n\n    '
     
-_lr_action_items = {'VAR':([0,],[5,]),'VAL':([0,],[6,]),'$end':([1,2,3,4,13,14,15,16,20,30,31,32,33,34,35,],[0,-1,-2,-3,-4,-12,-13,-14,-8,-5,-6,-7,-9,-10,-11,]),'ID':([5,6,],[7,8,]),'EQUALS':([7,8,17,18,19,21,22,23,],[9,11,24,25,26,27,28,29,]),'DOSPUNTOS':([7,8,],[10,12,]),'ENTERO':([9,11,24,27,],[14,14,30,33,]),'DECIMAL':([9,11,25,28,],[15,15,31,34,]),'CADENA_DE_CARACTERES':([9,11,26,29,],[16,16,32,35,]),'INT':([10,12,],[17,21,]),'DOUBLE':([10,12,],[18,22,]),'STRING':([10,12,],[19,23,]),}
+_lr_action_items = {'VAR':([0,],[6,]),'VAL':([0,],[7,]),'ENTERO':([0,12,13,14,15,16,18,29,],[8,8,-14,-15,-16,-17,8,33,]),'DECIMAL':([0,12,13,14,15,16,18,30,],[9,9,-14,-15,-16,-17,9,34,]),'CADENA_DE_CARACTERES':([0,12,13,14,15,16,18,31,],[10,10,-14,-15,-16,-17,10,35,]),'$end':([1,2,3,5,8,9,10,17,20,21,22,23,24,33,34,35,36,],[0,-1,-2,-12,-18,-19,-20,-3,-13,-4,-5,-21,-22,-8,-9,-10,-11,]),'ID':([4,6,7,],[11,-6,-7,]),'PLUS':([5,8,9,10,],[13,-18,-19,-20,]),'MINUS':([5,8,9,10,],[14,-18,-19,-20,]),'TIMES':([5,8,9,10,],[15,-18,-19,-20,]),'DIVIDE':([5,8,9,10,],[16,-18,-19,-20,]),'EQUALS':([11,25,26,27,28,],[18,29,30,31,32,]),'DOSPUNTOS':([11,],[19,]),'TRUE':([18,32,],[23,23,]),'FALSE':([18,32,],[24,24,]),'INT':([19,],[25,]),'DOUBLE':([19,],[26,]),'STRING':([19,],[27,]),'BOOLEAN':([19,],[28,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'algoritmo':([0,],[1,]),'iniVariable':([0,],[2,]),'iniVar':([0,],[3,]),'iniVal':([0,],[4,]),'valor':([9,11,],[13,20,]),}
+_lr_goto_items = {'algoritmo':([0,],[1,]),'iniVariable':([0,],[2,]),'expresion':([0,12,],[3,20,]),'variable':([0,],[4,]),'valor':([0,12,18,],[5,5,21,]),'operadorMat':([5,],[12,]),'tipoDeDato':([11,],[17,]),'valorBoolean':([18,32,],[22,36,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,17 +28,25 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> algoritmo","S'",1,None,None,None),
   ('algoritmo -> iniVariable','algoritmo',1,'p_algoritmo','sintactico.py',12),
-  ('iniVariable -> iniVar','iniVariable',1,'p_ini_variable','sintactico.py',23),
-  ('iniVariable -> iniVal','iniVariable',1,'p_ini_variable','sintactico.py',24),
-  ('iniVar -> VAR ID EQUALS valor','iniVar',4,'p_var','sintactico.py',29),
-  ('iniVar -> VAR ID DOSPUNTOS INT EQUALS ENTERO','iniVar',6,'p_var','sintactico.py',30),
-  ('iniVar -> VAR ID DOSPUNTOS DOUBLE EQUALS DECIMAL','iniVar',6,'p_var','sintactico.py',31),
-  ('iniVar -> VAR ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES','iniVar',6,'p_var','sintactico.py',32),
-  ('iniVal -> VAL ID EQUALS valor','iniVal',4,'p_val','sintactico.py',37),
-  ('iniVal -> VAL ID DOSPUNTOS INT EQUALS ENTERO','iniVal',6,'p_val','sintactico.py',38),
-  ('iniVal -> VAL ID DOSPUNTOS DOUBLE EQUALS DECIMAL','iniVal',6,'p_val','sintactico.py',39),
-  ('iniVal -> VAL ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES','iniVal',6,'p_val','sintactico.py',40),
-  ('valor -> ENTERO','valor',1,'p_valor','sintactico.py',73),
-  ('valor -> DECIMAL','valor',1,'p_valor','sintactico.py',74),
-  ('valor -> CADENA_DE_CARACTERES','valor',1,'p_valor','sintactico.py',75),
+  ('algoritmo -> expresion','algoritmo',1,'p_algoritmo','sintactico.py',13),
+  ('iniVariable -> variable ID tipoDeDato','iniVariable',3,'p_ini_variable','sintactico.py',24),
+  ('iniVariable -> variable ID EQUALS valor','iniVariable',4,'p_ini_variable','sintactico.py',25),
+  ('iniVariable -> variable ID EQUALS valorBoolean','iniVariable',4,'p_ini_variable','sintactico.py',26),
+  ('variable -> VAR','variable',1,'p_variable','sintactico.py',31),
+  ('variable -> VAL','variable',1,'p_variable','sintactico.py',32),
+  ('tipoDeDato -> DOSPUNTOS INT EQUALS ENTERO','tipoDeDato',4,'p_tipoDeDato','sintactico.py',38),
+  ('tipoDeDato -> DOSPUNTOS DOUBLE EQUALS DECIMAL','tipoDeDato',4,'p_tipoDeDato','sintactico.py',39),
+  ('tipoDeDato -> DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES','tipoDeDato',4,'p_tipoDeDato','sintactico.py',40),
+  ('tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS valorBoolean','tipoDeDato',4,'p_tipoDeDato','sintactico.py',41),
+  ('expresion -> valor','expresion',1,'p_expresion','sintactico.py',57),
+  ('expresion -> valor operadorMat expresion','expresion',3,'p_expresion_aritmetica','sintactico.py',62),
+  ('operadorMat -> PLUS','operadorMat',1,'p_operadorMat','sintactico.py',81),
+  ('operadorMat -> MINUS','operadorMat',1,'p_operadorMat','sintactico.py',82),
+  ('operadorMat -> TIMES','operadorMat',1,'p_operadorMat','sintactico.py',83),
+  ('operadorMat -> DIVIDE','operadorMat',1,'p_operadorMat','sintactico.py',84),
+  ('valor -> ENTERO','valor',1,'p_valor','sintactico.py',89),
+  ('valor -> DECIMAL','valor',1,'p_valor','sintactico.py',90),
+  ('valor -> CADENA_DE_CARACTERES','valor',1,'p_valor','sintactico.py',91),
+  ('valorBoolean -> TRUE','valorBoolean',1,'p_valorBoolean','sintactico.py',96),
+  ('valorBoolean -> FALSE','valorBoolean',1,'p_valorBoolean','sintactico.py',97),
 ]

@@ -3,16 +3,13 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     AND
-    BOOLEAN
     CAPITALIZE
     COMA
     DCOR
-    DIVIDE
     DLLAVE
     DPAR
     ELSE
     EQUAL
-    FALSE
     FIRST
     FOR
     FUN
@@ -28,13 +25,11 @@ Unused terminals:
     LISTOF
     LRGEQ
     MAPOF
-    MINUS
     NEGATION
     NOT
     NOTEQ
     OR
     PAIR
-    PLUS
     PRINT
     PRINTLN
     PUNTO
@@ -48,9 +43,7 @@ Unused terminals:
     SMLEQ
     STEP
     TAB
-    TIMES
     TO
-    TRUE
     VALUES
     WHILE
     newline
@@ -59,49 +52,57 @@ Grammar
 
 Rule 0     S' -> algoritmo
 Rule 1     algoritmo -> iniVariable
-Rule 2     iniVariable -> iniVar
-Rule 3     iniVariable -> iniVal
-Rule 4     iniVar -> VAR ID EQUALS valor
-Rule 5     iniVar -> VAR ID DOSPUNTOS INT EQUALS ENTERO
-Rule 6     iniVar -> VAR ID DOSPUNTOS DOUBLE EQUALS DECIMAL
-Rule 7     iniVar -> VAR ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
-Rule 8     iniVal -> VAL ID EQUALS valor
-Rule 9     iniVal -> VAL ID DOSPUNTOS INT EQUALS ENTERO
-Rule 10    iniVal -> VAL ID DOSPUNTOS DOUBLE EQUALS DECIMAL
-Rule 11    iniVal -> VAL ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
-Rule 12    valor -> ENTERO
-Rule 13    valor -> DECIMAL
-Rule 14    valor -> CADENA_DE_CARACTERES
+Rule 2     algoritmo -> expresion
+Rule 3     iniVariable -> variable ID tipoDeDato
+Rule 4     iniVariable -> variable ID EQUALS valor
+Rule 5     iniVariable -> variable ID EQUALS valorBoolean
+Rule 6     variable -> VAR
+Rule 7     variable -> VAL
+Rule 8     tipoDeDato -> DOSPUNTOS INT EQUALS ENTERO
+Rule 9     tipoDeDato -> DOSPUNTOS DOUBLE EQUALS DECIMAL
+Rule 10    tipoDeDato -> DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+Rule 11    tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS valorBoolean
+Rule 12    expresion -> valor
+Rule 13    expresion -> valor operadorMat expresion
+Rule 14    operadorMat -> PLUS
+Rule 15    operadorMat -> MINUS
+Rule 16    operadorMat -> TIMES
+Rule 17    operadorMat -> DIVIDE
+Rule 18    valor -> ENTERO
+Rule 19    valor -> DECIMAL
+Rule 20    valor -> CADENA_DE_CARACTERES
+Rule 21    valorBoolean -> TRUE
+Rule 22    valorBoolean -> FALSE
 
 Terminals, with rules where they appear
 
 AND                  : 
-BOOLEAN              : 
-CADENA_DE_CARACTERES : 7 11 14
+BOOLEAN              : 11
+CADENA_DE_CARACTERES : 10 20
 CAPITALIZE           : 
 COMA                 : 
 DCOR                 : 
-DECIMAL              : 6 10 13
-DIVIDE               : 
+DECIMAL              : 9 19
+DIVIDE               : 17
 DLLAVE               : 
-DOSPUNTOS            : 5 6 7 9 10 11
-DOUBLE               : 6 10
+DOSPUNTOS            : 8 9 10 11
+DOUBLE               : 9
 DPAR                 : 
 ELSE                 : 
-ENTERO               : 5 9 12
+ENTERO               : 8 18
 EQUAL                : 
-EQUALS               : 4 5 6 7 8 9 10 11
-FALSE                : 
+EQUALS               : 4 5 8 9 10 11
+FALSE                : 22
 FIRST                : 
 FOR                  : 
 FUN                  : 
 ICOR                 : 
-ID                   : 4 5 6 7 8 9 10 11
+ID                   : 3 4 5
 IF                   : 
 ILLAVE               : 
 IN                   : 
 INDENT               : 
-INT                  : 5 9
+INT                  : 8
 IPAR                 : 
 ISEMPTY              : 
 KEYS                 : 
@@ -109,13 +110,13 @@ LARGE                :
 LISTOF               : 
 LRGEQ                : 
 MAPOF                : 
-MINUS                : 
+MINUS                : 15
 NEGATION             : 
 NOT                  : 
 NOTEQ                : 
 OR                   : 
 PAIR                 : 
-PLUS                 : 
+PLUS                 : 14
 PRINT                : 
 PRINTLN              : 
 PUNTO                : 
@@ -128,14 +129,14 @@ SLICE                :
 SMALL                : 
 SMLEQ                : 
 STEP                 : 
-STRING               : 7 11
+STRING               : 10
 TAB                  : 
-TIMES                : 
+TIMES                : 16
 TO                   : 
-TRUE                 : 
-VAL                  : 8 9 10 11
+TRUE                 : 21
+VAL                  : 7
 VALUES               : 
-VAR                  : 4 5 6 7
+VAR                  : 6
 WHILE                : 
 error                : 
 newline              : 
@@ -143,10 +144,13 @@ newline              :
 Nonterminals, with rules where they appear
 
 algoritmo            : 0
-iniVal               : 3
-iniVar               : 2
+expresion            : 2 13
 iniVariable          : 1
-valor                : 4 8
+operadorMat          : 13
+tipoDeDato           : 3
+valor                : 4 12 13
+valorBoolean         : 5 11
+variable             : 3 4 5
 
 Parsing method: LALR
 
@@ -154,24 +158,29 @@ state 0
 
     (0) S' -> . algoritmo
     (1) algoritmo -> . iniVariable
-    (2) iniVariable -> . iniVar
-    (3) iniVariable -> . iniVal
-    (4) iniVar -> . VAR ID EQUALS valor
-    (5) iniVar -> . VAR ID DOSPUNTOS INT EQUALS ENTERO
-    (6) iniVar -> . VAR ID DOSPUNTOS DOUBLE EQUALS DECIMAL
-    (7) iniVar -> . VAR ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
-    (8) iniVal -> . VAL ID EQUALS valor
-    (9) iniVal -> . VAL ID DOSPUNTOS INT EQUALS ENTERO
-    (10) iniVal -> . VAL ID DOSPUNTOS DOUBLE EQUALS DECIMAL
-    (11) iniVal -> . VAL ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+    (2) algoritmo -> . expresion
+    (3) iniVariable -> . variable ID tipoDeDato
+    (4) iniVariable -> . variable ID EQUALS valor
+    (5) iniVariable -> . variable ID EQUALS valorBoolean
+    (12) expresion -> . valor
+    (13) expresion -> . valor operadorMat expresion
+    (6) variable -> . VAR
+    (7) variable -> . VAL
+    (18) valor -> . ENTERO
+    (19) valor -> . DECIMAL
+    (20) valor -> . CADENA_DE_CARACTERES
 
-    VAR             shift and go to state 5
-    VAL             shift and go to state 6
+    VAR             shift and go to state 6
+    VAL             shift and go to state 7
+    ENTERO          shift and go to state 8
+    DECIMAL         shift and go to state 9
+    CADENA_DE_CARACTERES shift and go to state 10
 
     algoritmo                      shift and go to state 1
     iniVariable                    shift and go to state 2
-    iniVar                         shift and go to state 3
-    iniVal                         shift and go to state 4
+    expresion                      shift and go to state 3
+    variable                       shift and go to state 4
+    valor                          shift and go to state 5
 
 state 1
 
@@ -188,265 +197,309 @@ state 2
 
 state 3
 
-    (2) iniVariable -> iniVar .
+    (2) algoritmo -> expresion .
 
-    $end            reduce using rule 2 (iniVariable -> iniVar .)
+    $end            reduce using rule 2 (algoritmo -> expresion .)
 
 
 state 4
 
-    (3) iniVariable -> iniVal .
+    (3) iniVariable -> variable . ID tipoDeDato
+    (4) iniVariable -> variable . ID EQUALS valor
+    (5) iniVariable -> variable . ID EQUALS valorBoolean
 
-    $end            reduce using rule 3 (iniVariable -> iniVal .)
+    ID              shift and go to state 11
 
 
 state 5
 
-    (4) iniVar -> VAR . ID EQUALS valor
-    (5) iniVar -> VAR . ID DOSPUNTOS INT EQUALS ENTERO
-    (6) iniVar -> VAR . ID DOSPUNTOS DOUBLE EQUALS DECIMAL
-    (7) iniVar -> VAR . ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+    (12) expresion -> valor .
+    (13) expresion -> valor . operadorMat expresion
+    (14) operadorMat -> . PLUS
+    (15) operadorMat -> . MINUS
+    (16) operadorMat -> . TIMES
+    (17) operadorMat -> . DIVIDE
 
-    ID              shift and go to state 7
+    $end            reduce using rule 12 (expresion -> valor .)
+    PLUS            shift and go to state 13
+    MINUS           shift and go to state 14
+    TIMES           shift and go to state 15
+    DIVIDE          shift and go to state 16
 
+    operadorMat                    shift and go to state 12
 
 state 6
 
-    (8) iniVal -> VAL . ID EQUALS valor
-    (9) iniVal -> VAL . ID DOSPUNTOS INT EQUALS ENTERO
-    (10) iniVal -> VAL . ID DOSPUNTOS DOUBLE EQUALS DECIMAL
-    (11) iniVal -> VAL . ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+    (6) variable -> VAR .
 
-    ID              shift and go to state 8
+    ID              reduce using rule 6 (variable -> VAR .)
 
 
 state 7
 
-    (4) iniVar -> VAR ID . EQUALS valor
-    (5) iniVar -> VAR ID . DOSPUNTOS INT EQUALS ENTERO
-    (6) iniVar -> VAR ID . DOSPUNTOS DOUBLE EQUALS DECIMAL
-    (7) iniVar -> VAR ID . DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+    (7) variable -> VAL .
 
-    EQUALS          shift and go to state 9
-    DOSPUNTOS       shift and go to state 10
+    ID              reduce using rule 7 (variable -> VAL .)
 
 
 state 8
 
-    (8) iniVal -> VAL ID . EQUALS valor
-    (9) iniVal -> VAL ID . DOSPUNTOS INT EQUALS ENTERO
-    (10) iniVal -> VAL ID . DOSPUNTOS DOUBLE EQUALS DECIMAL
-    (11) iniVal -> VAL ID . DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+    (18) valor -> ENTERO .
 
-    EQUALS          shift and go to state 11
-    DOSPUNTOS       shift and go to state 12
+    PLUS            reduce using rule 18 (valor -> ENTERO .)
+    MINUS           reduce using rule 18 (valor -> ENTERO .)
+    TIMES           reduce using rule 18 (valor -> ENTERO .)
+    DIVIDE          reduce using rule 18 (valor -> ENTERO .)
+    $end            reduce using rule 18 (valor -> ENTERO .)
 
 
 state 9
 
-    (4) iniVar -> VAR ID EQUALS . valor
-    (12) valor -> . ENTERO
-    (13) valor -> . DECIMAL
-    (14) valor -> . CADENA_DE_CARACTERES
+    (19) valor -> DECIMAL .
 
-    ENTERO          shift and go to state 14
-    DECIMAL         shift and go to state 15
-    CADENA_DE_CARACTERES shift and go to state 16
+    PLUS            reduce using rule 19 (valor -> DECIMAL .)
+    MINUS           reduce using rule 19 (valor -> DECIMAL .)
+    TIMES           reduce using rule 19 (valor -> DECIMAL .)
+    DIVIDE          reduce using rule 19 (valor -> DECIMAL .)
+    $end            reduce using rule 19 (valor -> DECIMAL .)
 
-    valor                          shift and go to state 13
 
 state 10
 
-    (5) iniVar -> VAR ID DOSPUNTOS . INT EQUALS ENTERO
-    (6) iniVar -> VAR ID DOSPUNTOS . DOUBLE EQUALS DECIMAL
-    (7) iniVar -> VAR ID DOSPUNTOS . STRING EQUALS CADENA_DE_CARACTERES
+    (20) valor -> CADENA_DE_CARACTERES .
 
-    INT             shift and go to state 17
-    DOUBLE          shift and go to state 18
-    STRING          shift and go to state 19
+    PLUS            reduce using rule 20 (valor -> CADENA_DE_CARACTERES .)
+    MINUS           reduce using rule 20 (valor -> CADENA_DE_CARACTERES .)
+    TIMES           reduce using rule 20 (valor -> CADENA_DE_CARACTERES .)
+    DIVIDE          reduce using rule 20 (valor -> CADENA_DE_CARACTERES .)
+    $end            reduce using rule 20 (valor -> CADENA_DE_CARACTERES .)
 
 
 state 11
 
-    (8) iniVal -> VAL ID EQUALS . valor
-    (12) valor -> . ENTERO
-    (13) valor -> . DECIMAL
-    (14) valor -> . CADENA_DE_CARACTERES
+    (3) iniVariable -> variable ID . tipoDeDato
+    (4) iniVariable -> variable ID . EQUALS valor
+    (5) iniVariable -> variable ID . EQUALS valorBoolean
+    (8) tipoDeDato -> . DOSPUNTOS INT EQUALS ENTERO
+    (9) tipoDeDato -> . DOSPUNTOS DOUBLE EQUALS DECIMAL
+    (10) tipoDeDato -> . DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
+    (11) tipoDeDato -> . DOSPUNTOS BOOLEAN EQUALS valorBoolean
 
-    ENTERO          shift and go to state 14
-    DECIMAL         shift and go to state 15
-    CADENA_DE_CARACTERES shift and go to state 16
+    EQUALS          shift and go to state 18
+    DOSPUNTOS       shift and go to state 19
 
-    valor                          shift and go to state 20
+    tipoDeDato                     shift and go to state 17
 
 state 12
 
-    (9) iniVal -> VAL ID DOSPUNTOS . INT EQUALS ENTERO
-    (10) iniVal -> VAL ID DOSPUNTOS . DOUBLE EQUALS DECIMAL
-    (11) iniVal -> VAL ID DOSPUNTOS . STRING EQUALS CADENA_DE_CARACTERES
+    (13) expresion -> valor operadorMat . expresion
+    (12) expresion -> . valor
+    (13) expresion -> . valor operadorMat expresion
+    (18) valor -> . ENTERO
+    (19) valor -> . DECIMAL
+    (20) valor -> . CADENA_DE_CARACTERES
 
-    INT             shift and go to state 21
-    DOUBLE          shift and go to state 22
-    STRING          shift and go to state 23
+    ENTERO          shift and go to state 8
+    DECIMAL         shift and go to state 9
+    CADENA_DE_CARACTERES shift and go to state 10
 
+    valor                          shift and go to state 5
+    expresion                      shift and go to state 20
 
 state 13
 
-    (4) iniVar -> VAR ID EQUALS valor .
+    (14) operadorMat -> PLUS .
 
-    $end            reduce using rule 4 (iniVar -> VAR ID EQUALS valor .)
+    ENTERO          reduce using rule 14 (operadorMat -> PLUS .)
+    DECIMAL         reduce using rule 14 (operadorMat -> PLUS .)
+    CADENA_DE_CARACTERES reduce using rule 14 (operadorMat -> PLUS .)
 
 
 state 14
 
-    (12) valor -> ENTERO .
+    (15) operadorMat -> MINUS .
 
-    $end            reduce using rule 12 (valor -> ENTERO .)
+    ENTERO          reduce using rule 15 (operadorMat -> MINUS .)
+    DECIMAL         reduce using rule 15 (operadorMat -> MINUS .)
+    CADENA_DE_CARACTERES reduce using rule 15 (operadorMat -> MINUS .)
 
 
 state 15
 
-    (13) valor -> DECIMAL .
+    (16) operadorMat -> TIMES .
 
-    $end            reduce using rule 13 (valor -> DECIMAL .)
+    ENTERO          reduce using rule 16 (operadorMat -> TIMES .)
+    DECIMAL         reduce using rule 16 (operadorMat -> TIMES .)
+    CADENA_DE_CARACTERES reduce using rule 16 (operadorMat -> TIMES .)
 
 
 state 16
 
-    (14) valor -> CADENA_DE_CARACTERES .
+    (17) operadorMat -> DIVIDE .
 
-    $end            reduce using rule 14 (valor -> CADENA_DE_CARACTERES .)
+    ENTERO          reduce using rule 17 (operadorMat -> DIVIDE .)
+    DECIMAL         reduce using rule 17 (operadorMat -> DIVIDE .)
+    CADENA_DE_CARACTERES reduce using rule 17 (operadorMat -> DIVIDE .)
 
 
 state 17
 
-    (5) iniVar -> VAR ID DOSPUNTOS INT . EQUALS ENTERO
+    (3) iniVariable -> variable ID tipoDeDato .
 
-    EQUALS          shift and go to state 24
+    $end            reduce using rule 3 (iniVariable -> variable ID tipoDeDato .)
 
 
 state 18
 
-    (6) iniVar -> VAR ID DOSPUNTOS DOUBLE . EQUALS DECIMAL
+    (4) iniVariable -> variable ID EQUALS . valor
+    (5) iniVariable -> variable ID EQUALS . valorBoolean
+    (18) valor -> . ENTERO
+    (19) valor -> . DECIMAL
+    (20) valor -> . CADENA_DE_CARACTERES
+    (21) valorBoolean -> . TRUE
+    (22) valorBoolean -> . FALSE
 
-    EQUALS          shift and go to state 25
+    ENTERO          shift and go to state 8
+    DECIMAL         shift and go to state 9
+    CADENA_DE_CARACTERES shift and go to state 10
+    TRUE            shift and go to state 23
+    FALSE           shift and go to state 24
 
+    valor                          shift and go to state 21
+    valorBoolean                   shift and go to state 22
 
 state 19
 
-    (7) iniVar -> VAR ID DOSPUNTOS STRING . EQUALS CADENA_DE_CARACTERES
+    (8) tipoDeDato -> DOSPUNTOS . INT EQUALS ENTERO
+    (9) tipoDeDato -> DOSPUNTOS . DOUBLE EQUALS DECIMAL
+    (10) tipoDeDato -> DOSPUNTOS . STRING EQUALS CADENA_DE_CARACTERES
+    (11) tipoDeDato -> DOSPUNTOS . BOOLEAN EQUALS valorBoolean
 
-    EQUALS          shift and go to state 26
+    INT             shift and go to state 25
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
 
 state 20
 
-    (8) iniVal -> VAL ID EQUALS valor .
+    (13) expresion -> valor operadorMat expresion .
 
-    $end            reduce using rule 8 (iniVal -> VAL ID EQUALS valor .)
+    $end            reduce using rule 13 (expresion -> valor operadorMat expresion .)
 
 
 state 21
 
-    (9) iniVal -> VAL ID DOSPUNTOS INT . EQUALS ENTERO
+    (4) iniVariable -> variable ID EQUALS valor .
 
-    EQUALS          shift and go to state 27
+    $end            reduce using rule 4 (iniVariable -> variable ID EQUALS valor .)
 
 
 state 22
 
-    (10) iniVal -> VAL ID DOSPUNTOS DOUBLE . EQUALS DECIMAL
+    (5) iniVariable -> variable ID EQUALS valorBoolean .
 
-    EQUALS          shift and go to state 28
+    $end            reduce using rule 5 (iniVariable -> variable ID EQUALS valorBoolean .)
 
 
 state 23
 
-    (11) iniVal -> VAL ID DOSPUNTOS STRING . EQUALS CADENA_DE_CARACTERES
+    (21) valorBoolean -> TRUE .
 
-    EQUALS          shift and go to state 29
+    $end            reduce using rule 21 (valorBoolean -> TRUE .)
 
 
 state 24
 
-    (5) iniVar -> VAR ID DOSPUNTOS INT EQUALS . ENTERO
+    (22) valorBoolean -> FALSE .
 
-    ENTERO          shift and go to state 30
+    $end            reduce using rule 22 (valorBoolean -> FALSE .)
 
 
 state 25
 
-    (6) iniVar -> VAR ID DOSPUNTOS DOUBLE EQUALS . DECIMAL
+    (8) tipoDeDato -> DOSPUNTOS INT . EQUALS ENTERO
 
-    DECIMAL         shift and go to state 31
+    EQUALS          shift and go to state 29
 
 
 state 26
 
-    (7) iniVar -> VAR ID DOSPUNTOS STRING EQUALS . CADENA_DE_CARACTERES
+    (9) tipoDeDato -> DOSPUNTOS DOUBLE . EQUALS DECIMAL
 
-    CADENA_DE_CARACTERES shift and go to state 32
+    EQUALS          shift and go to state 30
 
 
 state 27
 
-    (9) iniVal -> VAL ID DOSPUNTOS INT EQUALS . ENTERO
+    (10) tipoDeDato -> DOSPUNTOS STRING . EQUALS CADENA_DE_CARACTERES
 
-    ENTERO          shift and go to state 33
+    EQUALS          shift and go to state 31
 
 
 state 28
 
-    (10) iniVal -> VAL ID DOSPUNTOS DOUBLE EQUALS . DECIMAL
+    (11) tipoDeDato -> DOSPUNTOS BOOLEAN . EQUALS valorBoolean
 
-    DECIMAL         shift and go to state 34
+    EQUALS          shift and go to state 32
 
 
 state 29
 
-    (11) iniVal -> VAL ID DOSPUNTOS STRING EQUALS . CADENA_DE_CARACTERES
+    (8) tipoDeDato -> DOSPUNTOS INT EQUALS . ENTERO
 
-    CADENA_DE_CARACTERES shift and go to state 35
+    ENTERO          shift and go to state 33
 
 
 state 30
 
-    (5) iniVar -> VAR ID DOSPUNTOS INT EQUALS ENTERO .
+    (9) tipoDeDato -> DOSPUNTOS DOUBLE EQUALS . DECIMAL
 
-    $end            reduce using rule 5 (iniVar -> VAR ID DOSPUNTOS INT EQUALS ENTERO .)
+    DECIMAL         shift and go to state 34
 
 
 state 31
 
-    (6) iniVar -> VAR ID DOSPUNTOS DOUBLE EQUALS DECIMAL .
+    (10) tipoDeDato -> DOSPUNTOS STRING EQUALS . CADENA_DE_CARACTERES
 
-    $end            reduce using rule 6 (iniVar -> VAR ID DOSPUNTOS DOUBLE EQUALS DECIMAL .)
+    CADENA_DE_CARACTERES shift and go to state 35
 
 
 state 32
 
-    (7) iniVar -> VAR ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES .
+    (11) tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS . valorBoolean
+    (21) valorBoolean -> . TRUE
+    (22) valorBoolean -> . FALSE
 
-    $end            reduce using rule 7 (iniVar -> VAR ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES .)
+    TRUE            shift and go to state 23
+    FALSE           shift and go to state 24
 
+    valorBoolean                   shift and go to state 36
 
 state 33
 
-    (9) iniVal -> VAL ID DOSPUNTOS INT EQUALS ENTERO .
+    (8) tipoDeDato -> DOSPUNTOS INT EQUALS ENTERO .
 
-    $end            reduce using rule 9 (iniVal -> VAL ID DOSPUNTOS INT EQUALS ENTERO .)
+    $end            reduce using rule 8 (tipoDeDato -> DOSPUNTOS INT EQUALS ENTERO .)
 
 
 state 34
 
-    (10) iniVal -> VAL ID DOSPUNTOS DOUBLE EQUALS DECIMAL .
+    (9) tipoDeDato -> DOSPUNTOS DOUBLE EQUALS DECIMAL .
 
-    $end            reduce using rule 10 (iniVal -> VAL ID DOSPUNTOS DOUBLE EQUALS DECIMAL .)
+    $end            reduce using rule 9 (tipoDeDato -> DOSPUNTOS DOUBLE EQUALS DECIMAL .)
 
 
 state 35
 
-    (11) iniVal -> VAL ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES .
+    (10) tipoDeDato -> DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES .
 
-    $end            reduce using rule 11 (iniVal -> VAL ID DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES .)
+    $end            reduce using rule 10 (tipoDeDato -> DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES .)
+
+
+state 36
+
+    (11) tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS valorBoolean .
+
+    $end            reduce using rule 11 (tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS valorBoolean .)
 
