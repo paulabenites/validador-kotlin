@@ -12,7 +12,7 @@ reservada= {
             'while' : "WHILE",
             'for' : "FOR", 'step':"STEP",'in':"IN",
             'fun' : "FUN", 'return' : "RETURN", 'to' : "TO",
-            'listOf':"LISTOF",'setOf':"SETOF",'mapOf':"MAPOF",'pair' : "PAIR",
+            'listOf':"LISTOF",'setOf':"SETOF",'mapOf':"MAPOF",'Pair' : "PAIR",
             'first':"FIRST",'capitalize':"CAPITALIZE"
 }
 

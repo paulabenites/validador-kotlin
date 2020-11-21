@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOLEAN CADENA_DE_CARACTERES CAPITALIZE COMA DCOR DECIMAL DIVIDE DLLAVE DOSPUNTOS DOUBLE DPAR ELSE ENTERO EQUAL EQUALS FALSE FIRST FOR FUN ICOR ID IF ILLAVE IN INDENT INT IPAR ISEMPTY KEYS LARGE LISTOF LRGEQ MAPOF MINUS NEGATION NOT NOTEQ OR PAIR PLUS PRINT PRINTLN PUNTO PUNTOS READLINE RETURN SETOF SIZE SLICE SMALL SMLEQ STEP STRING TAB TIMES TO TRUE VAL VALUES VAR WHILE newlinealgoritmo : iniVariable\n                  | expresion\n    iniVariable : variable ID tipoDeDato\n                    | variable ID EQUALS valor\n                    | variable ID EQUALS valorBoolean\n\n    variable : VAR\n                 | VAL\n    tipoDeDato : DOSPUNTOS INT EQUALS ENTERO\n            | DOSPUNTOS DOUBLE EQUALS DECIMAL\n            | DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES\n            | DOSPUNTOS BOOLEAN EQUALS valorBoolean\n    expresion : valor\n\n    expresion : valor operadorMat expresionoperadorMat : PLUS\n                    | MINUS\n                    | TIMES\n                    | DIVIDE\n    valor : ENTERO\n            | DECIMAL\n            | CADENA_DE_CARACTERES\n\n    valorBoolean : TRUE\n                     | FALSE\n\n\n    '
+_lr_signature = 'AND BOOLEAN CADENA_DE_CARACTERES CAPITALIZE COMA DCOR DECIMAL DIVIDE DLLAVE DOSPUNTOS DOUBLE DPAR ELSE ENTERO EQUAL EQUALS FALSE FIRST FOR FUN ICOR ID IF ILLAVE IN INDENT INT IPAR ISEMPTY KEYS LARGE LISTOF LRGEQ MAPOF MINUS NEGATION NOT NOTEQ OR PAIR PLUS PRINT PRINTLN PUNTO PUNTOS READLINE RETURN SETOF SIZE SLICE SMALL SMLEQ STEP STRING TAB TIMES TO TRUE VAL VALUES VAR WHILE newlinealgoritmo : iniVariable\n                  | expresion\n                  | imprimir\n                  | readline\n                  | firstAndCap\n                  | list\n                  | conjuntos\n                  | tupla\n                  | maps\n    iniVariable : variable ID tipoDeDato\n                    | variable ID EQUALS valor\n                    | variable ID EQUALS valorBoolean\n\n    maps : variable ID EQUALS MAPOF IPAR mapsElemento DPAR\n        mapsElemento : CADENA_DE_CARACTERES TO tuplaElemento\n                     | CADENA_DE_CARACTERES TO tuplaElemento COMA mapsElemento\n\n    \n        tupla : variable IPAR ID COMA ID DPAR EQUALS PAIR IPAR tuplaElemento COMA tuplaElemento DPAR\n    \n        tuplaElemento : valor\n                      | ID\n                      | valorBoolean\n                      | LISTOF IPAR listElementos DPAR\n                      | SETOF IPAR listElementos DPAR\n    conjuntos : variable ID EQUALS SETOF IPAR listElementos DPARlist : variable ID EQUALS LISTOF IPAR listElementos DPAR\n        listElementos : valor\n                      | ID\n                      | valorBoolean\n                      | valorBoolean COMA listElementos\n                      | valor COMA listElementos\n                      | ID COMA listElementos\n                      | LISTOF IPAR listElementos DPAR\n                      | SETOF IPAR listElementos DPAR\n\n    variable : VAR\n                 | VAL\n    \n        readline : READLINE IPAR DPAR\n                 | variable ID EQUALS READLINE IPAR DPAR\n\n    \n        firstAndCap : ID PUNTO FIRST IPAR DPAR\n                    | ID PUNTO CAPITALIZE IPAR DPAR\n\n    tipoDeDato : DOSPUNTOS INT EQUALS ENTERO\n            | DOSPUNTOS DOUBLE EQUALS DECIMAL\n            | DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES\n            | DOSPUNTOS BOOLEAN EQUALS valorBoolean\n    imprimir : PRINT IPAR expresion DPAR\n                 | PRINT IPAR valorBoolean DPAR\n                 | PRINTLN IPAR expresion DPAR\n                 | PRINTLN IPAR valorBoolean DPAR\n     expresion : valor\n                 | ID\n\n    expresion : valor operadorMat expresion\n                 | ID operadorMat expresion\n    operadorMat : PLUS\n                    | MINUS\n                    | TIMES\n                    | DIVIDE\n    valor : ENTERO\n            | DECIMAL\n            | CADENA_DE_CARACTERES\n   valorBoolean : TRUE\n                     | FALSE\n\n\n    '
     
-_lr_action_items = {'VAR':([0,],[6,]),'VAL':([0,],[7,]),'ENTERO':([0,12,13,14,15,16,18,29,],[8,8,-14,-15,-16,-17,8,33,]),'DECIMAL':([0,12,13,14,15,16,18,30,],[9,9,-14,-15,-16,-17,9,34,]),'CADENA_DE_CARACTERES':([0,12,13,14,15,16,18,31,],[10,10,-14,-15,-16,-17,10,35,]),'$end':([1,2,3,5,8,9,10,17,20,21,22,23,24,33,34,35,36,],[0,-1,-2,-12,-18,-19,-20,-3,-13,-4,-5,-21,-22,-8,-9,-10,-11,]),'ID':([4,6,7,],[11,-6,-7,]),'PLUS':([5,8,9,10,],[13,-18,-19,-20,]),'MINUS':([5,8,9,10,],[14,-18,-19,-20,]),'TIMES':([5,8,9,10,],[15,-18,-19,-20,]),'DIVIDE':([5,8,9,10,],[16,-18,-19,-20,]),'EQUALS':([11,25,26,27,28,],[18,29,30,31,32,]),'DOSPUNTOS':([11,],[19,]),'TRUE':([18,32,],[23,23,]),'FALSE':([18,32,],[24,24,]),'INT':([19,],[25,]),'DOUBLE':([19,],[26,]),'STRING':([19,],[27,]),'BOOLEAN':([19,],[28,]),}
+_lr_action_items = {'ID':([0,11,17,18,23,24,26,27,28,29,30,31,32,60,68,69,93,94,96,97,98,101,118,119,120,127,],[12,22,-32,-33,37,38,-50,-51,-52,-53,38,38,38,75,79,79,79,79,79,79,79,110,79,79,110,110,]),'PRINT':([0,],[14,]),'PRINTLN':([0,],[15,]),'READLINE':([0,35,],[16,52,]),'VAR':([0,],[17,]),'VAL':([0,],[18,]),'ENTERO':([0,24,26,27,28,29,30,31,32,35,68,69,71,93,94,96,97,98,101,118,119,120,127,],[19,19,-50,-51,-52,-53,19,19,19,19,19,19,88,19,19,19,19,19,19,19,19,19,19,]),'DECIMAL':([0,24,26,27,28,29,30,31,32,35,68,69,72,93,94,96,97,98,101,118,119,120,127,],[20,20,-50,-51,-52,-53,20,20,20,20,20,20,89,20,20,20,20,20,20,20,20,20,20,]),'CADENA_DE_CARACTERES':([0,24,26,27,28,29,30,31,32,35,68,69,70,73,93,94,96,97,98,101,117,118,119,120,127,],[21,21,-50,-51,-52,-53,21,21,21,21,21,21,87,90,21,21,21,21,21,21,87,21,21,21,21,]),'$end':([1,2,3,4,5,6,7,8,9,10,12,13,19,20,21,34,38,39,42,45,46,49,50,51,63,64,65,66,76,77,78,88,89,90,91,95,99,100,129,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-47,-46,-54,-55,-56,-10,-47,-49,-48,-57,-58,-34,-11,-12,-42,-43,-44,-45,-36,-37,-35,-38,-39,-40,-41,-23,-22,-13,-16,]),'IPAR':([11,14,15,16,17,18,40,41,52,53,54,55,80,84,112,113,114,],[23,31,32,33,-32,-33,61,62,67,68,69,70,94,98,118,119,120,]),'PUNTO':([12,],[25,]),'PLUS':([12,13,19,20,21,38,],[26,26,-54,-55,-56,26,]),'MINUS':([12,13,19,20,21,38,],[27,27,-54,-55,-56,27,]),'TIMES':([12,13,19,20,21,38,],[28,28,-54,-55,-56,28,]),'DIVIDE':([12,13,19,20,21,38,],[29,29,-54,-55,-56,29,]),'DPAR':([13,19,20,21,33,38,39,42,43,44,45,46,47,48,61,62,67,75,79,81,82,83,85,86,103,104,105,106,107,108,109,110,111,115,116,121,122,123,125,126,128,],[-46,-54,-55,-56,49,-47,-49,-48,63,64,-57,-58,65,66,76,77,78,92,-25,95,-24,-26,99,100,-29,115,-28,-27,116,-14,-17,-18,-19,-30,-31,-15,125,126,-20,-21,129,]),'COMA':([19,20,21,37,45,46,79,82,83,108,109,110,111,124,125,126,],[-54,-55,-56,60,-57,-58,93,96,97,117,-17,-18,-19,127,-20,-21,]),'EQUALS':([22,56,57,58,59,92,],[35,71,72,73,74,102,]),'DOSPUNTOS':([22,],[36,]),'FIRST':([25,],[40,]),'CAPITALIZE':([25,],[41,]),'TRUE':([31,32,35,68,69,74,93,94,96,97,98,101,118,119,120,127,],[45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,]),'FALSE':([31,32,35,68,69,74,93,94,96,97,98,101,118,119,120,127,],[46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,]),'LISTOF':([35,68,69,93,94,96,97,98,101,118,119,120,127,],[53,80,80,80,80,80,80,80,112,80,80,112,112,]),'SETOF':([35,68,69,93,94,96,97,98,101,118,119,120,127,],[54,84,84,84,84,84,84,84,113,84,84,113,113,]),'MAPOF':([35,],[55,]),'INT':([36,],[56,]),'DOUBLE':([36,],[57,]),'STRING':([36,],[58,]),'BOOLEAN':([36,],[59,]),'TO':([87,],[101,]),'PAIR':([102,],[114,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'algoritmo':([0,],[1,]),'iniVariable':([0,],[2,]),'expresion':([0,12,],[3,20,]),'variable':([0,],[4,]),'valor':([0,12,18,],[5,5,21,]),'operadorMat':([5,],[12,]),'tipoDeDato':([11,],[17,]),'valorBoolean':([18,32,],[22,36,]),}
+_lr_goto_items = {'algoritmo':([0,],[1,]),'iniVariable':([0,],[2,]),'expresion':([0,24,30,31,32,],[3,39,42,43,47,]),'imprimir':([0,],[4,]),'readline':([0,],[5,]),'firstAndCap':([0,],[6,]),'list':([0,],[7,]),'conjuntos':([0,],[8,]),'tupla':([0,],[9,]),'maps':([0,],[10,]),'variable':([0,],[11,]),'valor':([0,24,30,31,32,35,68,69,93,94,96,97,98,101,118,119,120,127,],[13,13,13,13,13,50,82,82,82,82,82,82,82,109,82,82,109,109,]),'operadorMat':([12,13,38,],[24,30,24,]),'tipoDeDato':([22,],[34,]),'valorBoolean':([31,32,35,68,69,74,93,94,96,97,98,101,118,119,120,127,],[44,48,51,83,83,91,83,83,83,83,83,111,83,83,111,111,]),'listElementos':([68,69,93,94,96,97,98,118,119,],[81,85,103,104,105,106,107,122,123,]),'mapsElemento':([70,117,],[86,121,]),'tuplaElemento':([101,120,127,],[108,124,128,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,26 +27,62 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> algoritmo","S'",1,None,None,None),
-  ('algoritmo -> iniVariable','algoritmo',1,'p_algoritmo','sintactico.py',12),
-  ('algoritmo -> expresion','algoritmo',1,'p_algoritmo','sintactico.py',13),
-  ('iniVariable -> variable ID tipoDeDato','iniVariable',3,'p_ini_variable','sintactico.py',24),
-  ('iniVariable -> variable ID EQUALS valor','iniVariable',4,'p_ini_variable','sintactico.py',25),
-  ('iniVariable -> variable ID EQUALS valorBoolean','iniVariable',4,'p_ini_variable','sintactico.py',26),
-  ('variable -> VAR','variable',1,'p_variable','sintactico.py',31),
-  ('variable -> VAL','variable',1,'p_variable','sintactico.py',32),
-  ('tipoDeDato -> DOSPUNTOS INT EQUALS ENTERO','tipoDeDato',4,'p_tipoDeDato','sintactico.py',38),
-  ('tipoDeDato -> DOSPUNTOS DOUBLE EQUALS DECIMAL','tipoDeDato',4,'p_tipoDeDato','sintactico.py',39),
-  ('tipoDeDato -> DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES','tipoDeDato',4,'p_tipoDeDato','sintactico.py',40),
-  ('tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS valorBoolean','tipoDeDato',4,'p_tipoDeDato','sintactico.py',41),
-  ('expresion -> valor','expresion',1,'p_expresion','sintactico.py',57),
-  ('expresion -> valor operadorMat expresion','expresion',3,'p_expresion_aritmetica','sintactico.py',62),
-  ('operadorMat -> PLUS','operadorMat',1,'p_operadorMat','sintactico.py',81),
-  ('operadorMat -> MINUS','operadorMat',1,'p_operadorMat','sintactico.py',82),
-  ('operadorMat -> TIMES','operadorMat',1,'p_operadorMat','sintactico.py',83),
-  ('operadorMat -> DIVIDE','operadorMat',1,'p_operadorMat','sintactico.py',84),
-  ('valor -> ENTERO','valor',1,'p_valor','sintactico.py',89),
-  ('valor -> DECIMAL','valor',1,'p_valor','sintactico.py',90),
-  ('valor -> CADENA_DE_CARACTERES','valor',1,'p_valor','sintactico.py',91),
-  ('valorBoolean -> TRUE','valorBoolean',1,'p_valorBoolean','sintactico.py',96),
-  ('valorBoolean -> FALSE','valorBoolean',1,'p_valorBoolean','sintactico.py',97),
+  ('algoritmo -> iniVariable','algoritmo',1,'p_algoritmo','sintactico.py',14),
+  ('algoritmo -> expresion','algoritmo',1,'p_algoritmo','sintactico.py',15),
+  ('algoritmo -> imprimir','algoritmo',1,'p_algoritmo','sintactico.py',16),
+  ('algoritmo -> readline','algoritmo',1,'p_algoritmo','sintactico.py',17),
+  ('algoritmo -> firstAndCap','algoritmo',1,'p_algoritmo','sintactico.py',18),
+  ('algoritmo -> list','algoritmo',1,'p_algoritmo','sintactico.py',19),
+  ('algoritmo -> conjuntos','algoritmo',1,'p_algoritmo','sintactico.py',20),
+  ('algoritmo -> tupla','algoritmo',1,'p_algoritmo','sintactico.py',21),
+  ('algoritmo -> maps','algoritmo',1,'p_algoritmo','sintactico.py',22),
+  ('iniVariable -> variable ID tipoDeDato','iniVariable',3,'p_ini_variable','sintactico.py',33),
+  ('iniVariable -> variable ID EQUALS valor','iniVariable',4,'p_ini_variable','sintactico.py',34),
+  ('iniVariable -> variable ID EQUALS valorBoolean','iniVariable',4,'p_ini_variable','sintactico.py',35),
+  ('maps -> variable ID EQUALS MAPOF IPAR mapsElemento DPAR','maps',7,'p_maps','sintactico.py',39),
+  ('mapsElemento -> CADENA_DE_CARACTERES TO tuplaElemento','mapsElemento',3,'p_mapsElemento','sintactico.py',42),
+  ('mapsElemento -> CADENA_DE_CARACTERES TO tuplaElemento COMA mapsElemento','mapsElemento',5,'p_mapsElemento','sintactico.py',43),
+  ('tupla -> variable IPAR ID COMA ID DPAR EQUALS PAIR IPAR tuplaElemento COMA tuplaElemento DPAR','tupla',13,'p_tupla','sintactico.py',48),
+  ('tuplaElemento -> valor','tuplaElemento',1,'p_tuplaElemento','sintactico.py',52),
+  ('tuplaElemento -> ID','tuplaElemento',1,'p_tuplaElemento','sintactico.py',53),
+  ('tuplaElemento -> valorBoolean','tuplaElemento',1,'p_tuplaElemento','sintactico.py',54),
+  ('tuplaElemento -> LISTOF IPAR listElementos DPAR','tuplaElemento',4,'p_tuplaElemento','sintactico.py',55),
+  ('tuplaElemento -> SETOF IPAR listElementos DPAR','tuplaElemento',4,'p_tuplaElemento','sintactico.py',56),
+  ('conjuntos -> variable ID EQUALS SETOF IPAR listElementos DPAR','conjuntos',7,'p_conjuntos','sintactico.py',59),
+  ('list -> variable ID EQUALS LISTOF IPAR listElementos DPAR','list',7,'p_list','sintactico.py',63),
+  ('listElementos -> valor','listElementos',1,'p_listElementos','sintactico.py',67),
+  ('listElementos -> ID','listElementos',1,'p_listElementos','sintactico.py',68),
+  ('listElementos -> valorBoolean','listElementos',1,'p_listElementos','sintactico.py',69),
+  ('listElementos -> valorBoolean COMA listElementos','listElementos',3,'p_listElementos','sintactico.py',70),
+  ('listElementos -> valor COMA listElementos','listElementos',3,'p_listElementos','sintactico.py',71),
+  ('listElementos -> ID COMA listElementos','listElementos',3,'p_listElementos','sintactico.py',72),
+  ('listElementos -> LISTOF IPAR listElementos DPAR','listElementos',4,'p_listElementos','sintactico.py',73),
+  ('listElementos -> SETOF IPAR listElementos DPAR','listElementos',4,'p_listElementos','sintactico.py',74),
+  ('variable -> VAR','variable',1,'p_variable','sintactico.py',79),
+  ('variable -> VAL','variable',1,'p_variable','sintactico.py',80),
+  ('readline -> READLINE IPAR DPAR','readline',3,'p_readline','sintactico.py',85),
+  ('readline -> variable ID EQUALS READLINE IPAR DPAR','readline',6,'p_readline','sintactico.py',86),
+  ('firstAndCap -> ID PUNTO FIRST IPAR DPAR','firstAndCap',5,'p_firstAndCap','sintactico.py',91),
+  ('firstAndCap -> ID PUNTO CAPITALIZE IPAR DPAR','firstAndCap',5,'p_firstAndCap','sintactico.py',92),
+  ('tipoDeDato -> DOSPUNTOS INT EQUALS ENTERO','tipoDeDato',4,'p_tipoDeDato','sintactico.py',97),
+  ('tipoDeDato -> DOSPUNTOS DOUBLE EQUALS DECIMAL','tipoDeDato',4,'p_tipoDeDato','sintactico.py',98),
+  ('tipoDeDato -> DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES','tipoDeDato',4,'p_tipoDeDato','sintactico.py',99),
+  ('tipoDeDato -> DOSPUNTOS BOOLEAN EQUALS valorBoolean','tipoDeDato',4,'p_tipoDeDato','sintactico.py',100),
+  ('imprimir -> PRINT IPAR expresion DPAR','imprimir',4,'p_imprimir','sintactico.py',105),
+  ('imprimir -> PRINT IPAR valorBoolean DPAR','imprimir',4,'p_imprimir','sintactico.py',106),
+  ('imprimir -> PRINTLN IPAR expresion DPAR','imprimir',4,'p_imprimir','sintactico.py',107),
+  ('imprimir -> PRINTLN IPAR valorBoolean DPAR','imprimir',4,'p_imprimir','sintactico.py',108),
+  ('expresion -> valor','expresion',1,'p_expresion','sintactico.py',120),
+  ('expresion -> ID','expresion',1,'p_expresion','sintactico.py',121),
+  ('expresion -> valor operadorMat expresion','expresion',3,'p_expresion_aritmetica','sintactico.py',126),
+  ('expresion -> ID operadorMat expresion','expresion',3,'p_expresion_aritmetica','sintactico.py',127),
+  ('operadorMat -> PLUS','operadorMat',1,'p_operadorMat','sintactico.py',148),
+  ('operadorMat -> MINUS','operadorMat',1,'p_operadorMat','sintactico.py',149),
+  ('operadorMat -> TIMES','operadorMat',1,'p_operadorMat','sintactico.py',150),
+  ('operadorMat -> DIVIDE','operadorMat',1,'p_operadorMat','sintactico.py',151),
+  ('valor -> ENTERO','valor',1,'p_valor','sintactico.py',156),
+  ('valor -> DECIMAL','valor',1,'p_valor','sintactico.py',157),
+  ('valor -> CADENA_DE_CARACTERES','valor',1,'p_valor','sintactico.py',158),
+  ('valorBoolean -> TRUE','valorBoolean',1,'p_valorBoolean','sintactico.py',162),
+  ('valorBoolean -> FALSE','valorBoolean',1,'p_valorBoolean','sintactico.py',163),
 ]

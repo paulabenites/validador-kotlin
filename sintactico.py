@@ -6,11 +6,20 @@ from lexer import tokens
 #                  | asignacion
 #                  | expresion
 #                  | comparacion
+
+
 #     '''
 
 def p_algoritmo(p):
     '''algoritmo : iniVariable
                   | expresion
+                  | imprimir
+                  | readline
+                  | firstAndCap
+                  | list
+                  | conjuntos
+                  | tupla
+                  | maps
     '''
 
 # def p_asignacion(p):
@@ -26,13 +35,63 @@ def p_ini_variable(p):
                     | variable ID EQUALS valorBoolean
 
     '''
+def p_maps(p):
+    'maps : variable ID EQUALS MAPOF IPAR mapsElemento DPAR'
+def p_mapsElemento(p):
+    '''
+        mapsElemento : CADENA_DE_CARACTERES TO tuplaElemento
+                     | CADENA_DE_CARACTERES TO tuplaElemento COMA mapsElemento
+
+    '''
+def p_tupla(p):
+    '''
+        tupla : variable IPAR ID COMA ID DPAR EQUALS PAIR IPAR tuplaElemento COMA tuplaElemento DPAR
+    '''
+def p_tuplaElemento(p) :
+    '''
+        tuplaElemento : valor
+                      | ID
+                      | valorBoolean
+                      | LISTOF IPAR listElementos DPAR
+                      | SETOF IPAR listElementos DPAR
+    '''
+def p_conjuntos(p):
+    'conjuntos : variable ID EQUALS SETOF IPAR listElementos DPAR'
+
+
+def p_list(p):
+    'list : variable ID EQUALS LISTOF IPAR listElementos DPAR'
+
+def p_listElementos(p):
+    '''
+        listElementos : valor
+                      | ID
+                      | valorBoolean
+                      | valorBoolean COMA listElementos
+                      | valor COMA listElementos
+                      | ID COMA listElementos
+                      | LISTOF IPAR listElementos DPAR
+                      | SETOF IPAR listElementos DPAR
+
+    '''
 
 def p_variable(p):
     '''variable : VAR
                  | VAL
     '''
 
+def p_readline(p):
+    '''
+        readline : READLINE IPAR DPAR
+                 | variable ID EQUALS READLINE IPAR DPAR
 
+    '''
+def p_firstAndCap(p):
+    '''
+        firstAndCap : ID PUNTO FIRST IPAR DPAR
+                    | ID PUNTO CAPITALIZE IPAR DPAR
+
+    '''
 
 def p_tipoDeDato(p):
     '''tipoDeDato : DOSPUNTOS INT EQUALS ENTERO
@@ -42,11 +101,15 @@ def p_tipoDeDato(p):
     '''
 
 
+def p_imprimir(p):
+     '''imprimir : PRINT IPAR expresion DPAR
+                 | PRINT IPAR valorBoolean DPAR
+                 | PRINTLN IPAR expresion DPAR
+                 | PRINTLN IPAR valorBoolean DPAR
+     '''
 
-# def p_imprimir(p):
-#     'imprimir : PRINT PIZQ expresion PDER'
-#
-#
+
+
 
 # def p_imprimir(p):
 #     '''imprimir : PRINT PIZQ valor PDER'
@@ -55,11 +118,15 @@ def p_tipoDeDato(p):
 
 def p_expresion(p):
     '''expresion : valor
+                 | ID
 
     '''
 
 def p_expresion_aritmetica(p):
-    'expresion : valor operadorMat expresion'
+    '''expresion : valor operadorMat expresion
+                 | ID operadorMat expresion
+    '''
+
     #Es expresion : no expresion:
 
 
@@ -89,8 +156,7 @@ def p_valor(p):
     '''valor : ENTERO
             | DECIMAL
             | CADENA_DE_CARACTERES
-
-    '''
+   '''
 
 def p_valorBoolean(p):
     '''valorBoolean : TRUE
