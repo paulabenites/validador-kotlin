@@ -22,13 +22,13 @@ println(name)
 print("Paula")
 val valorinput = readLine()
 
-"Condiciones y operaciones lógicas"
+"Condiciones y operaciones logicas"
 val mayor= 10>1
 val menor= 1<10
 val igual= 10==10
 val diferente= 5!=2
 
-"Operaciones matemáticas"
+"Operaciones matematicas"
 val suma = 1 + 2
 val resta = 2 - 2
 val multiplicacion = 10 * 74
