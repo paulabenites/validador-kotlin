@@ -1,20 +1,31 @@
 import ply.lex as lex
 
+# Definicion de palagbras reservada ---> Paula Benites
+reservada= {
+            'print' : "PRINT",'println' : "println",'readline' : "readline",
+            'pair' : "pair",
+            'isEmpty' : "isEmpty",
+            "values" : "values", "keys" : "keys",
+            'else' : "else", "if" : "if",
+            'while' : "while",
+           'for' : "for",
+           'fun' : "fun", 'return' : "return", 'to' : "to"
+}
 
 
-#Definicion d elas lista de tokens --> Victor Alvardado
-token = (
-    'INT', 'DOUBLE', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'TAB', 'newline',
-    'EQUALS', 'DOSPUNTOS', 'COMA','STRING',
-    'PUNTO','PUNTOS','CADENA_DE_CARACTERES', 'EQUAL', 'NOTEQ', 'LARGE', 'SMALL', 'LRGEQ', 'SMLEQ', 'ID', 'FALSO',
-    'VERDAD', 'IPAR', 'DPAR', "INDENT","Int",'Double','Boolean','AND','NOT','OR','NEGATION','ILLAVE','DLLAVE',
-    'VAL','VAR','LISTOF',"SETOF","MAPOF","STEP","IN"
-)
+# Definicion de las lista de tokens --> Victor Alvardado
+tokens = [
+    'INT', 'DOUBLE', 'FALSO', 'VERDAD', 'ID', 'CADENA_DE_CARACTERES',
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
+    'EQUALS', 'DOSPUNTOS', 'COMA','STRING','PUNTO','PUNTOS', 'EQUAL',
+    'LARGE', 'SMALL', 'NOTEQ', 'LRGEQ', 'SMLEQ',
+    'ILLAVE','DLLAVE', 'IPAR', 'DPAR',
+    'AND','NOT','OR','NEGATION',
+    "INDENT", 'newline','TAB',
+    'LISTOF',"SETOF","MAPOF", "STEP","IN", 'VAL','VAR', "Int",'Double','Boolean',
+] + list(reservada.values())
 
-#Definicion de palagbras reservadar ---> Paula Benites
-reserveda= ('ELSE','IF','RETURN','PRINT','println','ISEMPTY' ,'WHILE','FOR','FUN',"values","keys",'TO','READLINE')
-
-tokens=token+reserveda
+# tokens=token+reserveda
 # Regular expression rules for simple tokens -- Paula Benites
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'
@@ -47,16 +58,6 @@ t_NEGATION=r'\!'
 
 # definicion de la funciones exectp estructuras de control -- > Scarlet Espinoza
 # Reglas de correspondencia
-
-def t_values(token):
-    r'values\s'
-    token.value = str(token.value)
-    return token
-
-def t_keys(token):
-    r'keys\s'
-    token.value = str(token.value)
-    return token
 
 def t_VAR(token):
     r'var\s'
@@ -122,40 +123,8 @@ def t_SIZE(token):
     token.value = str(token.value)
     return token
 
-def t_ISEMPTY(token):
-    r'isEmpty'
-    token.value = str(token.value)
-    return token
-
-def t_TO(token):
-    r'to\s'
-    token.value = str(token.value)
-    return token
-
-def t_READLINE(token):
-    r'readLine'
-    token.value = str(token.value)
-    return token
-
-# SCARLET ESPINOZA HICE EL WHILE
-def t_WHILE(token):
-    r'while\s'
-    token.value = str(token.value)
-    return token
-
-
 #Paula Benites hice el If y Else
 
-def t_IF(token):
-    r'if'
-    token.value = str(token.value)
-    return token
-
-def t_ELSE(token):
-    r'else'
-    r'else'
-    token.value = str(token.value)
-    return token
 
 #Paula Benites hice listof
 def t_LISTOF(token):
@@ -175,36 +144,6 @@ def t_MAPOF(token):
     return token
 
 
-def t_println(token):
-    r'println'
-    token.value = str(token.value)
-    return token
-
-def t_PRINT(token):
-    r'print'
-    token.value = str(token.value)
-    return token
-
-
-def t_RETURN(token):
-    r'return\s'
-    token.value = str(token.value)
-    return token
-
-#VICTOR ALVARADO HICE EL FOR
-
-def t_FOR(token):
-    r'for'
-    token.value = str(token.value)
-    return token
-
-def t_FUN(token):
-    r'fun'
-    token.value = str(token.value)
-    return token
-
-
-
 def t_STEP(token):
     r'step\s'
     token.value = str(token.value)
@@ -220,7 +159,9 @@ def t_IN(token):
 
 def t_ID(token):
     '([a-zA-Z_][a-zA-Z0-9_]*)'
-    token.value = str(token.value)
+    # token.value = str(token.value)
+    token.type = reservada.get(token.value, 'ID')
+
     return token
 
 def t_newline(token):
