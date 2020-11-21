@@ -60,15 +60,17 @@ t_NEGATION=r'\!'
 # definicion de la funciones exectp estructuras de control -- > Scarlet Espinoza
 # Reglas de correspondencia
 
-def t_ENTERO(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
 
 def t_DECIMAL(t):
     r'\d+\.\d+'
     t.value = float(t.value[::])
     return t
+
+def t_ENTERO(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
 
 def t_ID(token):
     '([a-zA-Z_][a-zA-Z0-9_]*)'
@@ -93,20 +95,20 @@ def t_error(token):
 
 
 # Codigo para leer Archivo
-
-file =open("EjemplosBenites.txt", "r")
-if file.mode=="r":
-    datos=file.read()
+#
+# file =open("ejemplo.txt", "r")
+# if file.mode=="r":
+#     datos=file.read()
 
 
 lexer = lex.lex()
-
-
-def leerLexer1():
-    lexer.input(datos)
-    while True:
-        tk = lexer.token()
-        if not tk:
-            break
-        print(str(tk))
-leerLexer1()
+#
+# #
+# def leerLexer1():
+#     lexer.input(datos)
+#     while True:
+#         tk = lexer.token()
+#         if not tk:
+#             break
+#         print(str(tk))
+# leerLexer1()
