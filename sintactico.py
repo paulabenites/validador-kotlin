@@ -15,12 +15,47 @@ def p_algoritmo(p):
                   | maps
                   | funColecciones
                   | expLogicas
+                  | fun
+
+
+    '''
+
+#declara una funcion -- Scarlet Espinoza
+def p_fun(p):
+    '''fun : FUN ID IPAR DPAR ILLAVE algoritmo DLLAVE
+            | FUN ID IPAR entrada_fun DPAR ILLAVE algoritmo DLLAVE
+            | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE algoritmo return DLLAVE
+            | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo return DLLAVE
     '''
 
 
-# def p_expresion(p):
-#     'expresion : valor'
+# funcion que declara un return dentro de una funcion  --Scarlet Espinoza
+def p_return(p):
+    '''return : RETURN expLogicas
+               | RETURN expresion
+               | RETURN valorBoolean
+               | RETURN expresionRelacional
+    '''
 
+
+# estos son los datos que recibe como entrada las funciones --Scarlet Espinoza
+def p_entrada_fun(p):
+    '''entrada_fun : ID DOSPUNTOS tipos
+                    | ID DOSPUNTOS tipos COMA entrada_fun
+
+    '''
+
+def p_tipos(p):
+    '''tipos : INT
+             | DOUBLE
+             | BOOLEAN
+             | STRING
+    '''
+
+    
+    
+    
+    
 def p_ini_variable(p):
     '''iniVariable : variable ID tipoDeDato
                     | variable ID EQUALS valor
@@ -185,16 +220,22 @@ def p_expresion(p):
                  | ID
 
     '''
+
+
 # funcion para definir una expresion matematica--Scarlet Espinoza
 def p_expresion_aritmetica(p):
     '''expresion : valor operadorMat expresion
                  | ID operadorMat expresion
     '''
+
+
 # funcion para definir una expresion relacional--Scarlet Espinoza
 def p_expresion_relacional(p):
     '''expresionRelacional : elementoRelacional operadorRelacional elementoRelacional
 
     '''
+
+
 #Estos son los elementos que se pueden operar con operadores relacionales -- Scarlet Espinoza
 def p_elementoRelacional(p):
     '''elementoRelacional : ENTERO
@@ -203,10 +244,7 @@ def p_elementoRelacional(p):
                         | valorBoolean
        '''
 
-
-
-
-# funcion que define los operadores matematicos -- Scarletr Espinoza
+# funcion que define los operadores matematicos -- Scarlet Espinoza
 def p_operadorMat(p):
     '''operadorMat : PLUS
                     | MINUS
