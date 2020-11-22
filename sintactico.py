@@ -5,6 +5,7 @@ from lexer import tokens
 def p_algoritmo(p):
     '''algoritmo : iniVariable
                   | expresion
+                  | expresionRelacional
                   | imprimir
                   | readline
                   | firstAndCap
@@ -13,6 +14,7 @@ def p_algoritmo(p):
                   | tupla
                   | maps
                   | funColecciones
+                  | expLogicas
     '''
 
 
@@ -24,7 +26,7 @@ def p_ini_variable(p):
                     | variable ID EQUALS valor
                     | variable ID EQUALS valorBoolean
                     | variable ID EQUALS expLogicas
-
+                    | variable ID EQUALS expresionRelacional
     '''
 
 
@@ -40,6 +42,7 @@ def p_elementosPrint(p):
                     | expresion
                     | valorBoolean
                     | expLogicas
+                    | expresionRelacional
     '''
 
 # Funciones de las colecciones (listas, maps, sets y strings) -- PAULA BENITES
@@ -130,6 +133,8 @@ def p_listElementos(p):
         listElementos : valor
                       | ID
                       | valorBoolean
+                      | expresionRelacional
+                      | expLogicas
                       | valorBoolean COMA listElementos
                       | valor COMA listElementos
                       | ID COMA listElementos
@@ -164,6 +169,7 @@ def p_tipoDeDato(p):
             | DOSPUNTOS STRING EQUALS CADENA_DE_CARACTERES
             | DOSPUNTOS BOOLEAN EQUALS valorBoolean
             | DOSPUNTOS BOOLEAN EQUALS expLogicas
+            | DOSPUNTOS BOOLEAN EQUALS expresionRelacional
     '''
 
 # colecciones (list, set y maps)
@@ -179,14 +185,28 @@ def p_expresion(p):
                  | ID
 
     '''
-
+# funcion para definir una expresion matematica--Scarlet Espinoza
 def p_expresion_aritmetica(p):
     '''expresion : valor operadorMat expresion
                  | ID operadorMat expresion
     '''
+# funcion para definir una expresion relacional--Scarlet Espinoza
+def p_expresion_relacional(p):
+    '''expresionRelacional : elementoRelacional operadorRelacional elementoRelacional
+
+    '''
+#Estos son los elementos que se pueden operar con operadores relacionales -- Scarlet Espinoza
+def p_elementoRelacional(p):
+    '''elementoRelacional : ENTERO
+                        | DOUBLE
+                        | ID
+                        | valorBoolean
+       '''
 
 
-# operadores matematicos
+
+
+# funcion que define los operadores matematicos -- Scarletr Espinoza
 def p_operadorMat(p):
     '''operadorMat : PLUS
                     | MINUS
@@ -194,7 +214,7 @@ def p_operadorMat(p):
                     | DIVIDE
     '''
 
-
+#funcion que define los elementos que tiene Valor --Scarlet Espinoza
 def p_valor(p):
     '''valor : ENTERO
             | DECIMAL
@@ -226,6 +246,15 @@ def p_valorBoolean(p):
                      | FALSE
 
 
+    '''
+# funcion que define los tipos de operadores relacionales --ScarletEspinoza
+def p_operadorRelacional(p):
+    '''operadorRelacional : EQUAL
+                         | NOTEQ
+                         | LARGE
+                         | SMALL
+                         | LRGEQ
+                         | SMLEQ
     '''
 
 
