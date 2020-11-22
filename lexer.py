@@ -7,7 +7,7 @@ reservada= {
             'true':"TRUE",'false':"FALSE",
             'print' : "PRINT",'println' : "PRINTLN",'readline' : "READLINE",
             'isEmpty' : "ISEMPTY",'size':"SIZE",'slice':"SLICE",
-            "values" : "VALUES", "keys" : "KEYS",
+            "values" : "VALUES", "keys" : "KEYS", "get":"GET",
             'else' : "ELSE", "if" : "IF",
             'while' : "WHILE",
             'for' : "FOR", 'step':"STEP",'in':"IN",
@@ -24,8 +24,9 @@ tokens = [
     'EQUALS', 'DOSPUNTOS', 'COMA','PUNTO','PUNTOS', 'EQUAL',
     'LARGE', 'SMALL', 'NOTEQ', 'LRGEQ', 'SMLEQ',
     'ILLAVE','DLLAVE', 'IPAR', 'DPAR','ICOR','DCOR',
-    'AND','NOT','OR','NEGATION',
+    'AND','OR','NEGATION',
     "INDENT", 'newline','TAB',
+    'NOT'
 
 ] + list(reservada.values())
 
