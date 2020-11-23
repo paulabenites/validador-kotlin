@@ -21,6 +21,7 @@ def p_cuerpo(p):
                   | funColecciones
                   | expLogicas
                   | fun
+                  | if
     '''
 
 #declara una funcion -- Scarlet Espinoza
@@ -32,6 +33,25 @@ def p_fun(p):
             | FUN ID IPAR entrada_fun DPAR EQUALS return
     '''
 
+# definicion de if -- Paula Benites
+def p_if(p):
+    ''' if : IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE
+            | IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE else
+            | IF IPAR entradaIf DPAR return else
+    '''
+
+# definicion de ELSE
+def p_else(p):
+    '''else : ELSE ILLAVE algoritmo DLLAVE
+            | ELSE return
+    '''
+
+# Entrada de if (operadores logicos y valores booleanos)
+def p_entradaIf(p):
+    '''entradaIf : valorBoolean
+                | expLogicas
+                | expresionRelacional
+     '''
 
 # define expresiones que se pueden retornar en una funcion  --Scarlet Espinoza
 def p_return(p):
@@ -318,7 +338,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-file =open("ejemplo.txt")
+file =open("AlgoritmoBenites.txt")
 s=file.read()
 print(s)
 result = parser.parse(s)

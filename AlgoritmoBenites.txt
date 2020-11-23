@@ -1,5 +1,1 @@
-fun funcion(){
-    print(a)
-    print(b)
-    print(a+b)
-}
+if(a>b) a else a+b
