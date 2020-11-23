@@ -6,13 +6,10 @@ Unused terminals:
     FOR
     IF
     IN
-    INDENT
     NOT
     PUNTOS
     STEP
-    TAB
     WHILE
-    newline
 
 Grammar
 
@@ -171,7 +168,6 @@ ID                   : 14 15 16 17 18 23 24 29 30 31 32 33 48 49 49 50 51 53 55 
 IF                   : 
 ILLAVE               : 14 15 16 17
 IN                   : 
-INDENT               : 
 INT                  : 25 87
 IPAR                 : 14 15 16 17 18 34 35 50 53 54 55 56 56 59 60 63 63 67 68 69 70 79 80 83 84 85 86 93 94 95
 ISEMPTY              : 53 54
@@ -200,7 +196,6 @@ SMALL                : 123
 SMLEQ                : 125
 STEP                 : 
 STRING               : 28 89
-TAB                  : 
 TIMES                : 107
 TO                   : 61 62
 TRUE                 : 118
@@ -209,7 +204,6 @@ VALUES               : 58 59
 VAR                  : 81
 WHILE                : 
 error                : 
-newline              : 
 
 Nonterminals, with rules where they appear
 

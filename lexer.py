@@ -25,7 +25,6 @@ tokens = [
     'LARGE', 'SMALL', 'NOTEQ', 'LRGEQ', 'SMLEQ',
     'ILLAVE','DLLAVE', 'IPAR', 'DPAR','ICOR','DCOR',
     'AND','OR','NEGATION',
-    "INDENT", 'newline','TAB',
     'NOT'
 
 ] + list(reservada.values())
@@ -49,11 +48,6 @@ t_DOSPUNTOS = r':'
 t_PUNTO     =r'\.'
 t_COMA      =r'\,'
 t_CADENA_DE_CARACTERES = r"\"[a-zA-Z0-9\s]*\"|'[a-zA-Z0-9\s]*'"
-t_TAB       =r'\t'
-
-
-
-
 t_EQUAL   = r'\=\='
 t_NOTEQ   = r'\!\='
 t_LARGE   = r'\>'
@@ -90,7 +84,6 @@ def t_ID(token):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-    print ("new line")
 
 def t_whitespace(token):
     r'\s+'

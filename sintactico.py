@@ -315,27 +315,20 @@ def p_error(p):
 
 parser = yacc.yacc()
 
+file =open("ejemplo.txt")
+s=file.read()
+print(s)
+result = parser.parse(s)
+print(result)
+file.close()
 
-# file =open("ejemplo.txt", "r")
-# if file.mode=="r":
-#     datos=file.read()
-#
-#
-# def sintactico():
-#     s = input(datos)
-#     while True:
-#         result = parser.parse(s)
-#         if not s:
-#             break
-#         print(result)
-#
-# sintactico()
 
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
+
+# while True:
+#     try:
+#         s = input('calc > ')
+#     except EOFError:
+#         break
+#     if not s: continue
+#     result = parser.parse(s)
+#     print(result)

@@ -1,1 +1,3 @@
-4.45
+fun myName( ) {
+print(a)
+}
