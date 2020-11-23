@@ -3,7 +3,12 @@ from lexer import tokens
 
 
 def p_algoritmo(p):
-    '''algoritmo : iniVariable
+    '''algoritmo : cuerpo
+                  | cuerpo algoritmo
+    '''
+
+def p_cuerpo(p):
+    '''cuerpo : iniVariable
                   | expresion
                   | expresionRelacional
                   | imprimir
@@ -16,8 +21,6 @@ def p_algoritmo(p):
                   | funColecciones
                   | expLogicas
                   | fun
-
-
     '''
 
 #declara una funcion -- Scarlet Espinoza
