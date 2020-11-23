@@ -50,7 +50,10 @@ t_PUNTO     =r'\.'
 t_COMA      =r'\,'
 t_CADENA_DE_CARACTERES = r"\"[a-zA-Z0-9\s]*\"|'[a-zA-Z0-9\s]*'"
 t_TAB       =r'\t'
-t_ignore_COMMENT = r'\/\/.*'
+
+
+
+
 t_EQUAL   = r'\=\='
 t_NOTEQ   = r'\!\='
 t_LARGE   = r'\>'
