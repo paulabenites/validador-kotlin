@@ -9,7 +9,6 @@ def p_algoritmo(p):
 #Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_cuerpo(p):
     '''cuerpo : iniVariable
-                  | expresion
                   | expresionRelacional
                   | imprimir
                   | readline
@@ -26,7 +25,9 @@ def p_cuerpo(p):
                   | while
                   | valorIncDec
                   | valorInDecAsignacion
-
+                  | definicionVariables
+                  | valor operadorMat expresion
+                  | ID operadorMat expresion
     '''
 
 #declara una funcion -- Scarlet Espinoza
@@ -132,6 +133,8 @@ def p_ini_variable(p):
                     | variable ID EQUALS valorBoolean
                     | variable ID EQUALS expLogicas
                     | variable ID EQUALS expresionRelacional
+                    | variable ID EQUALS funColecciones
+                    | variable ID EQUALS READLINE IPAR DPAR
     '''
 
 
@@ -149,6 +152,8 @@ def p_elementosPrint(p):
                     | expLogicas
                     | expresionRelacional
                     | imprimirColecciones
+                    | firstAndCap
+                    | getMap
 
     '''
 # colecciones que se pueden imprimir (tuplas, listas,set,mapas) --
@@ -228,6 +233,7 @@ def p_tupla(p):
     '''
         tupla : variable IPAR ID COMA ID DPAR EQUALS PAIR IPAR tuplaElemento COMA tuplaElemento DPAR
     '''
+
 #elementos que se pueden poner dentro de una tupla-- VICTOR ALVARADO
 def p_tuplaElemento(p) :
     '''
@@ -259,6 +265,13 @@ def p_listElementos(p):
                       | SETOF IPAR listElementos DPAR
 
     '''
+# colecciones (list, set y maps)
+def p_coleccion(p):
+    '''coleccion : LISTOF IPAR listElementos DPAR
+                | SETOF IPAR listElementos DPAR
+                | MAPOF IPAR mapsElemento DPAR
+                '''
+
 #Definicion para el inicio de una variable-- VICTOR ALVARADO
 def p_variable(p):
     '''variable : VAR
@@ -287,20 +300,30 @@ def p_tipoDeDato(p):
             | DOSPUNTOS BOOLEAN EQUALS valorBoolean
             | DOSPUNTOS BOOLEAN EQUALS expLogicas
             | DOSPUNTOS BOOLEAN EQUALS expresionRelacional
+            | tipoDeDato2
+
+
     '''
 
-# colecciones (list, set y maps)
-def p_coleccion(p):
-    '''coleccion : LISTOF IPAR listElementos DPAR
-                | SETOF IPAR listElementos DPAR
-                | MAPOF IPAR mapsElemento DPAR
-                '''
+#tipos de datos para declaracion de variables sin asignación de valores ej. val a : Int--VICTOR ALVARADO
+def p_tipoDeDato2(p):
+    '''tipoDeDato2 : DOSPUNTOS INT
+            | DOSPUNTOS DOUBLE
+            | DOSPUNTOS STRING
+            | DOSPUNTOS BOOLEAN
+
+
+    '''
+def p_definicionVariables(p):
+    '''definicionVariables : ID EQUALS valor
+                           | ID EQUALS valorBoolean
+    '''
+
 
 
 def p_expresion(p):
     '''expresion : valor
                  | ID
-
     '''
 
 
@@ -396,7 +419,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-file =open("AlgoritmoEspinoza.txt")
+file =open("AlgoritmoAlvarado.txt")
 s=file.read()
 print(s)
 result = parser.parse(s)

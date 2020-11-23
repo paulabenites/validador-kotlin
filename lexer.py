@@ -5,7 +5,7 @@ reservada= {
             'var':"VAR",'val':"VAL",
             'Int':"INT",'Double':"DOUBLE",'Boolean':"BOOLEAN", 'String':"STRING",
             'true':"TRUE",'false':"FALSE",
-            'print' : "PRINT",'println' : "PRINTLN",'readline' : "READLINE",
+            'print' : "PRINT",'println' : "PRINTLN",'readLine' : "READLINE",
             'isEmpty' : "ISEMPTY",'size':"SIZE",'slice':"SLICE",
             "values" : "VALUES", "keys" : "KEYS", "get":"GET",
             'else' : "ELSE", "if" : "IF",
@@ -21,18 +21,17 @@ reservada= {
 tokens = [
     'ENTERO', 'DECIMAL', 'ID', 'CADENA_DE_CARACTERES',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
-    'EQUALS', 'DOSPUNTOS', 'COMA','PUNTO','PUNTOS', 'EQUAL',
+    'EQUALS', 'DOSPUNTOS', 'COMA','PUNTO', 'EQUAL',
     'LARGE', 'SMALL', 'NOTEQ', 'LRGEQ', 'SMLEQ',
     'ILLAVE','DLLAVE', 'IPAR', 'DPAR','ICOR','DCOR',
-    'AND','OR','NEGATION',
-    'NOT',"MASMAS",
+    'AND','OR','NEGATION',"MASMAS",
     "MENOSMENOS", "MASIGUAL","MENOSIGUAL"
 
 ] + list(reservada.values())
 
 # Regular expression rules for simple tokens -- Paula Benites
 t_ignore = ' \t'
-t_ignore_COMMENT = r'\/\/ '
+t_ignore_COMMENT = r'\/\/'
 
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'
