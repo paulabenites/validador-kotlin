@@ -24,17 +24,18 @@ def p_algoritmo(p):
 def p_fun(p):
     '''fun : FUN ID IPAR DPAR ILLAVE algoritmo DLLAVE
             | FUN ID IPAR entrada_fun DPAR ILLAVE algoritmo DLLAVE
-            | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE algoritmo return DLLAVE
-            | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo return DLLAVE
+            | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
+            | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
+            | FUN ID IPAR entrada_fun DPAR EQUALS return
     '''
 
 
-# funcion que declara un return dentro de una funcion  --Scarlet Espinoza
+# define expresiones que se pueden retornar en una funcion  --Scarlet Espinoza
 def p_return(p):
-    '''return : RETURN expLogicas
-               | RETURN expresion
-               | RETURN valorBoolean
-               | RETURN expresionRelacional
+    '''return :  expLogicas
+               | expresion
+               | valorBoolean
+               | expresionRelacional
     '''
 
 
