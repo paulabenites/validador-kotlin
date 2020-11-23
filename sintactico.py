@@ -1,12 +1,12 @@
 import ply.yacc as yacc
 from lexer import tokens
 
-
+#Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_algoritmo(p):
     '''algoritmo : cuerpo
                   | cuerpo algoritmo
     '''
-
+#Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_cuerpo(p):
     '''cuerpo : iniVariable
                   | expresion
@@ -22,6 +22,7 @@ def p_cuerpo(p):
                   | expLogicas
                   | fun
                   | if
+                  | for
     '''
 
 #declara una funcion -- Scarlet Espinoza
@@ -31,6 +32,18 @@ def p_fun(p):
             | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR EQUALS return
+    '''
+#Declara un for -- Victor Alvarado
+def p_for(p):
+    'for : FOR condicionFor ILLAVE algoritmo DLLAVE'
+
+#Declara el cuerpo del for -- Victor Alvarado
+def p_condicionFor(p):
+    '''condicionFor : IPAR ID IN ID DPAR
+                    | IPAR ID IN ENTERO PUNTO PUNTO ENTERO DPAR
+                    | IPAR ID IN ENTERO PUNTO PUNTO ENTERO STEP ENTERO DPAR
+
+
     '''
 
 # definicion de if -- Paula Benites
@@ -168,11 +181,12 @@ def p_mapsElemento(p):
 
     '''
 
-# Inicializacion de tupla
+# Inicializacion de tupla-- VICTOR ALVARADO
 def p_tupla(p):
     '''
         tupla : variable IPAR ID COMA ID DPAR EQUALS PAIR IPAR tuplaElemento COMA tuplaElemento DPAR
     '''
+#elementos que se pueden poner dentro de una tupla-- VICTOR ALVARADO
 def p_tuplaElemento(p) :
     '''
         tuplaElemento : valor
@@ -181,13 +195,14 @@ def p_tuplaElemento(p) :
                       | LISTOF IPAR listElementos DPAR
                       | SETOF IPAR listElementos DPAR
     '''
+#Declaracion de un set(conjunto)--VICTOR ALVARADO
 def p_conjuntos(p):
     'conjuntos : variable ID EQUALS SETOF IPAR listElementos DPAR'
 
-
+# Declaracion de una lista-- VICTOR ALVARADO
 def p_list(p):
     'list : variable ID EQUALS LISTOF IPAR listElementos DPAR'
-
+#Elementos que se pueden poner dentro de una tupla- VICTOR ALVARADO
 def p_listElementos(p):
     '''
         listElementos : valor
@@ -202,12 +217,12 @@ def p_listElementos(p):
                       | SETOF IPAR listElementos DPAR
 
     '''
-
+#Definicion para el inicio de una variable-- VICTOR ALVARADO
 def p_variable(p):
     '''variable : VAR
                  | VAL
     '''
-
+#Lectura de datos-- VICTOR ALVARADO
 def p_readline(p):
     '''
         readline : READLINE IPAR DPAR
@@ -215,14 +230,14 @@ def p_readline(p):
 
     '''
 
-# funciones de String
+# funciones de String first y capitalize-- VICTOR ALVARADO
 def p_firstAndCap(p):
     '''
         firstAndCap : ID PUNTO FIRST IPAR DPAR
                     | ID PUNTO CAPITALIZE IPAR DPAR
 
     '''
-
+#tipos de datos-- VICTOR ALVARADO
 def p_tipoDeDato(p):
     '''tipoDeDato : DOSPUNTOS INT EQUALS ENTERO
             | DOSPUNTOS DOUBLE EQUALS DECIMAL
@@ -339,7 +354,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-file =open("AlgoritmoBenites.txt")
+file =open("AlgoritmoAlvarado.txt")
 s=file.read()
 print(s)
 result = parser.parse(s)
