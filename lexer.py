@@ -31,6 +31,9 @@ tokens = [
 ] + list(reservada.values())
 
 # Regular expression rules for simple tokens -- Paula Benites
+t_ignore = ' \t'
+t_ignore_COMMENT = r'\/\/ '
+
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'
 t_DLLAVE    = r'\}'
@@ -62,6 +65,7 @@ t_NEGATION=r'\!'
 # Reglas de correspondencia
 
 
+
 def t_DECIMAL(t):
     r'\d+\.\d+'
     t.value = float(t.value[::])
@@ -80,9 +84,10 @@ def t_ID(token):
 
     return token
 
-def t_newline(token):
+def t_newline(t):
     r'\n+'
-    token.lexer.lineno += len(token.value)
+    t.lexer.lineno += len(t.value)
+    print ("new line")
 
 def t_whitespace(token):
     r'\s+'
