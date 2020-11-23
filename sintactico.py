@@ -23,6 +23,10 @@ def p_cuerpo(p):
                   | fun
                   | if
                   | for
+                  | while
+                  | valorIncDec
+                  | valorInDecAsignacion
+
     '''
 
 #declara una funcion -- Scarlet Espinoza
@@ -33,6 +37,34 @@ def p_fun(p):
             | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR EQUALS return
     '''
+
+# Declara un while -- Scarlet Espinoza
+def p_while(p):
+    'while : WHILE IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE '
+
+#Funcion que incrementa o decrementa el valor d euna variable PERO ASIGNANDOLO -- Scarlet Espinoza
+def p_valorInDecAsignacion(p):
+    'valorInDecAsignacion : ID incDecAsignaacion ENTERO'
+
+
+#Funcion que incrementa o decrementa el valor d euna variable -- Scarlet Espinoza   a++
+def p_valorIncDec(p):
+    'valorIncDec : ID incrementoDec'
+
+# funcion que define decremento o incremento -- Scarlet Espinoza
+def p_incrementoDec(p):
+    '''incrementoDec : MASMAS
+                | MENOSMENOS
+
+    '''
+
+# funcion que define otro dipo de incremento o decremento ( += o -=) --Scarlet Espinoza
+def p_incDecAsignacion(p):
+    '''incDecAsignaacion : MASIGUAL
+                | MENOSIGUAL
+
+    '''
+
 #Declara un for -- Victor Alvarado
 def p_for(p):
     'for : FOR condicionFor ILLAVE algoritmo DLLAVE'
@@ -116,6 +148,16 @@ def p_elementosPrint(p):
                     | valorBoolean
                     | expLogicas
                     | expresionRelacional
+                    | imprimirColecciones
+
+    '''
+# colecciones que se pueden imprimir (tuplas, listas,set,mapas) --
+def p_imprimirColecciones(p):
+    '''imprimirColecciones : PAIR IPAR tuplaElemento COMA tuplaElemento DPAR
+                            | MAPOF IPAR mapsElemento DPAR
+                            | LISTOF IPAR listElementos DPAR
+                            | SETOF IPAR listElementos DPAR
+
     '''
 
 # Funciones de las colecciones (listas, maps, sets y strings) -- PAULA BENITES
@@ -354,7 +396,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-file =open("AlgoritmoAlvarado.txt")
+file =open("AlgoritmoEspinoza.txt")
 s=file.read()
 print(s)
 result = parser.parse(s)

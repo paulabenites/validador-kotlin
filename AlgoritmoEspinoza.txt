@@ -1,0 +1,11 @@
+while (index < 8) {
+    index++
+    a+=3
+    for(i in 0..9){
+        print(Pair(1,x))
+        print(listOf("Scarlet","Es","Bella"))
+        print(mapOf("a" to 1 , "b" to 2))
+        print(setOf(1,2,3))
+    }
+   
+}

@@ -4,5 +4,6 @@ for (variable in lista){
         print("ejemplo")
         }
     }
+
 }
 

@@ -25,7 +25,8 @@ tokens = [
     'LARGE', 'SMALL', 'NOTEQ', 'LRGEQ', 'SMLEQ',
     'ILLAVE','DLLAVE', 'IPAR', 'DPAR','ICOR','DCOR',
     'AND','OR','NEGATION',
-    'NOT'
+    'NOT',"MASMAS",
+    "MENOSMENOS", "MASIGUAL","MENOSIGUAL"
 
 ] + list(reservada.values())
 
@@ -57,7 +58,10 @@ t_SMLEQ   = r'\<\='
 t_AND = r'\&\&'
 t_OR  = r'\|\|'
 t_NEGATION=r'\!'
-
+t_MASMAS=r"\+\+"
+t_MENOSMENOS=r"\-\-"
+t_MASIGUAL=r"\+\="
+t_MENOSIGUAL=r"\-\="
 # definicion de la funciones exectp estructuras de control -- > Scarlet Espinoza
 # Reglas de correspondencia
 
