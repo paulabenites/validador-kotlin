@@ -36,6 +36,7 @@ def p_fun(p):
 # definicion de if -- Paula Benites
 def p_if(p):
     ''' if : IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE
+            | IF IPAR entradaIf DPAR return
             | IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE else
             | IF IPAR entradaIf DPAR return else
     '''
