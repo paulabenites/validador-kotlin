@@ -1,1 +1,10 @@
-if(a>b) a
+fun algoritmo(a : Int) : Int {
+    var lista = listOf("lexico", "sintactico")
+    println(lista[1])
+    if(a == 5 ){
+        // A es 5
+    } else{
+        print(mapOf("valueA" to 5, "valueB" to 0))
+    }
+    return a + 5
+}
