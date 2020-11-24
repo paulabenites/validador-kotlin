@@ -1,11 +1,20 @@
-while (index < 8) {
-    index++
-    a+=3
-    for(i in 0..9){
+var a : Int = 10
+var b : Int = 20
+var saludo = "hola mundo"
+val map = mapOf("Andres" to 1 , "Juan" to 2 ,"Scarlet" to 3)
+print(map.get("Scarlet"))
+while (a <= 30) {
+    if( b != 3 ) {
+        println(saludo.capitalize())
+    }else{
+        println("Mundo triste")
+    }
+  a++
+  b--
+}
+for(i in 0..9){
         print(Pair(1,x))
         print(listOf("Scarlet","Es","Bella"))
         print(mapOf("a" to 1 , "b" to 2))
         print(setOf(1,2,3))
-    }
-   
-}
+ }
