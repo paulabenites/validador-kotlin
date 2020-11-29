@@ -99,12 +99,6 @@ def t_error(token):
     return token
 
 
-# Codigo para leer Archivo
-#
-# file =open("ejemplo.txt", "r")
-# if file.mode=="r":
-#     datos=file.read()
-
 
 lexer = lex.lex()
 #
@@ -116,4 +110,25 @@ lexer = lex.lex()
 #         if not tk:
 #             break
 #         print(str(tk))
+# leerLexer1()
+
+
+def leerLexer1(text):
+
+    lexer.input(text)
+    l_tokens = []
+
+    while True:
+        tk = lexer.token()
+        if not tk:
+            break
+        # linea = "Linea " + str(tk.lineno) + ": " + tk.type
+        linea = "token: " + tk.type
+        # print(linea)
+        l_tokens.append(linea)
+    print(l_tokens[0])
+    lexer.input("")
+
+    return l_tokens
+
 # leerLexer1()
