@@ -419,7 +419,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-file =open("AlgoritmoAlvarado.txt")
+file =open("Ejemplos/AlgoritmoBenites.txt")
 s=file.read()
 print(s)
 result = parser.parse(s)
