@@ -4,7 +4,6 @@ from tkinter import scrolledtext
 from lexer import leerLexer1
 from sintactico import reglas_sintactico
 
-
 class Ventana:
     def __init__(self,root):
         root.title("Analizador sintáctico - Kotlin")

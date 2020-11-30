@@ -477,7 +477,8 @@ def p_operadorRelacional(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    reglas.append("Syntax error in input!")
+
 
 # file =open("Ejemplos/AlgoritmoBenites.txt")
 # s=file.read()

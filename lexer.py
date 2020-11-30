@@ -1,5 +1,4 @@
 import ply.lex as lex
-
 # Definicion de palagbras reservada ---> Paula Benites
 reservada= {
             'var':"VAR",'val':"VAL",
@@ -31,7 +30,7 @@ tokens = [
 
 # Regular expression rules for simple tokens -- Paula Benites
 t_ignore = ' \t'
-t_ignore_COMMENT = r'\/\/'
+t_ignore_COMMENT = r'\/\/| \/\*[a-zA-Z0-9\s]*\*\/'
 
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'
@@ -96,6 +95,7 @@ def t_whitespace(token):
 def t_error(token):
     print("Error caracter no definido en token:'%s'" % token.value[0])
     token.lexer.skip(1)
+    #print(token)
     return token
 
 
@@ -114,16 +114,15 @@ lexer = lex.lex()
 
 
 def leerLexer1(text):
-
     lexer.input(text)
     l_tokens = []
-
     while True:
         tk = lexer.token()
         if not tk:
             break
         # linea = "Linea " + str(tk.lineno) + ": " + tk.type
         linea = "token: " + tk.type
+
         # print(linea)
         l_tokens.append(linea)
     print(l_tokens[0])
