@@ -91,6 +91,10 @@ def t_whitespace(token):
     r'\s+'
     pass
 
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    return (token.lexpos - line_start) + 1
+
 # Error handling rule
 def t_error(token):
     print("Error caracter no definido en token:'%s'" % token.value[0])
@@ -122,12 +126,12 @@ def leerLexer1(text):
             break
         # linea = "Linea " + str(tk.lineno) + ": " + tk.type
         linea = "token: " + tk.type
-
+        columna = find_column(text,tk)
+        linea = "Linea " + " "+ str(tk.lineno) + " " + "Columna " + str(columna) + ": " + tk.type
         # print(linea)
         l_tokens.append(linea)
     print(l_tokens[0])
     lexer.input("")
 
+    lexer.lineno= 1
     return l_tokens
-
-# leerLexer1()
