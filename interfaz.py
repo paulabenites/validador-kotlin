@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import scrolledtext
+from tkinter import scrolledtext,messagebox
 from lexer import leerLexer1
 from sintactico import reglas_sintactico
 
@@ -48,15 +48,19 @@ class Ventana:
 
 
     def lexico(self):
-        texto = leerLexer1(self.txt.get("1.0", 'end'))
-        str_texto = "\n".join(texto)
-        self.l_lexico.config(text=str_texto)
-
+        try:
+            texto = leerLexer1(self.txt.get("1.0", 'end'))
+            str_texto = "\n".join(texto)
+            self.l_lexico.config(text=str_texto)
+        except:
+            messagebox.showinfo(message="Debe ingresar una expresión", title="Advertencia")
     def sintactico(self):
-        sint = reglas_sintactico(self.txt.get("1.0", 'end'))
-        str_texto = "\n".join(sint)
-        self.l_sintactico.config(text=str_texto)
-
+        try:
+            sint = reglas_sintactico(self.txt.get("1.0", 'end'))
+            str_texto = "\n".join(sint)
+            self.l_sintactico.config(text=str_texto)
+        except:
+            messagebox.showinfo(message="Debe ingresar una expresión", title="Advertencia")
 
 class ScrollableFrame(ttk.Frame):
     def __init__(self, container, *args, **kwargs):

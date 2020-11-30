@@ -150,6 +150,7 @@ def p_ini_variable(p):
                     | variable ID EQUALS expresionRelacional
                     | variable ID EQUALS funColecciones
                     | variable ID EQUALS READLINE IPAR DPAR
+
     '''
     reglas.append("p_ini_variable")
 
@@ -463,17 +464,6 @@ def p_operadorRelacional(p):
                          | SMLEQ
     '''
     reglas.append("p_operadorRelacional")
-
-# def p_comparacion(p):
-#     'comparacion : expresion operadorComp expresion'
-#     # Es expresion : no expresion:
-#
-#
-# def p_operadorComp(p):
-#     '''operadorComp : MAYOR
-#                     | DIFERENTE
-#     '''
-#
 
 # Error rule for syntax errors
 def p_error(p):
