@@ -127,7 +127,7 @@ def leerLexer1(text):
         # linea = "Linea " + str(tk.lineno) + ": " + tk.type
         linea = "token: " + tk.type
         columna = find_column(text,tk)
-        linea = "Linea " + " "+ str(tk.lineno) + " " + "Columna " + str(columna) + ": " + tk.type
+        linea = "Linea " + " "+ str(tk.lineno) + " " + "Columna " + str(columna) + " : " + tk.type
         # print(linea)
         l_tokens.append(linea)
     print(l_tokens[0])

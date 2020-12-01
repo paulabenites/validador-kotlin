@@ -55,12 +55,12 @@ class Ventana:
         except:
             messagebox.showinfo(message="Debe ingresar una expresión", title="Advertencia")
     def sintactico(self):
-        try:
+        # try:
             sint = reglas_sintactico(self.txt.get("1.0", 'end'))
             str_texto = "\n".join(sint)
             self.l_sintactico.config(text=str_texto)
-        except:
-            messagebox.showinfo(message="Debe ingresar una expresión", title="Advertencia")
+        # except:
+        #     messagebox.showinfo(message="Debe ingresar una expresión", title="Advertencia")
 
 class ScrollableFrame(ttk.Frame):
     def __init__(self, container, *args, **kwargs):
