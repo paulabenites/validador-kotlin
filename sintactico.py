@@ -1,14 +1,14 @@
 import ply.yacc as yacc
 from lexer import tokens
 reglas = []
-
 #Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_algoritmo(p):
     '''algoritmo : cuerpo
                   | cuerpo algoritmo
     '''
 
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_algoritmo"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_algoritmo"
+
     reglas.append(linea)
 #Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_cuerpo(p):
@@ -33,7 +33,8 @@ def p_cuerpo(p):
                   | valor operadorMat expresion
                   | ID operadorMat expresion
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_cuerpo"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_cuerpo"
+
     reglas.append(linea)
 
 
@@ -45,23 +46,27 @@ def p_fun(p):
             | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR EQUALS return
     '''
-    linea = "Linea: " + str(p.lineno(1))  + " Columna: " + str(p.lexpos(1)) + "p_fun"
+    linea = "Linea: " + str(p.lineno(1))  + " Columna: " + str(p.lexpos(1)) + " p_fun"
+
     reglas.append(linea)
 
 # Declara un while -- Scarlet Espinoza
 def p_while(p):
     'while : WHILE IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE '
-    linea = "Linea: " + str(p.lineno(1))  + " Columna: " + str(p.lexpos(1)) + "p_while"
+    linea = "Linea: " + str(p.lineno(1))  + " Columna: " + str(p.lexpos(1)) + " p_while"
+
     reglas.append(linea)
 #Funcion que incrementa o decrementa el valor d euna variable PERO ASIGNANDOLO -- Scarlet Espinoza
 def p_valorInDecAsignacion(p):
     'valorInDecAsignacion : ID incDecAsignaacion ENTERO'
-    linea = "Linea: " + str(p.lineno(1)) +  " Columna: " + str(p.lexpos(1)) + "p_valorInDecAsignacion"
+    linea = "Linea: " + str(p.lineno(1)) +  " Columna: " + str(p.lexpos(1)) + " p_valorInDecAsignacion"
+
     reglas.append(linea)
 #Funcion que incrementa o decrementa el valor d euna variable -- Scarlet Espinoza   a++
 def p_valorIncDec(p):
     'valorIncDec : ID incrementoDec'
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_valorIncDec"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_valorIncDec"
+
     reglas.append(linea)
 
 # funcion que define decremento o incremento -- Scarlet Espinoza
@@ -69,7 +74,8 @@ def p_incrementoDec(p):
     '''incrementoDec : MASMAS
                 | MENOSMENOS
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_incrementoDec"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_incrementoDec"
+
     reglas.append(linea)
 
 # funcion que define otro dipo de incremento o decremento ( += o -=) --Scarlet Espinoza
@@ -77,13 +83,15 @@ def p_incDecAsignacion(p):
     '''incDecAsignaacion : MASIGUAL
                 | MENOSIGUAL
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_incDecAsignacion"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_incDecAsignacion"
+
     reglas.append(linea)
 
 #Declara un for -- Victor Alvarado
 def p_for(p):
     'for : FOR condicionFor ILLAVE algoritmo DLLAVE'
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_for"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_for"
+
     reglas.append(linea)
 
 #Declara el cuerpo del for -- Victor Alvarado
@@ -92,7 +100,8 @@ def p_condicionFor(p):
                     | IPAR ID IN ENTERO PUNTO PUNTO ENTERO DPAR
                     | IPAR ID IN ENTERO PUNTO PUNTO ENTERO STEP ENTERO DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_condicionFor"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_condicionFor"
+
     reglas.append(linea)
 
 
@@ -103,7 +112,8 @@ def p_if(p):
             | IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE else
             | IF IPAR entradaIf DPAR return else
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_if"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_if"
+
     reglas.append(linea)
 
 # definicion de ELSE
@@ -111,7 +121,8 @@ def p_else(p):
     '''else : ELSE ILLAVE algoritmo DLLAVE
             | ELSE return
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_else"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_else"
+
     reglas.append(linea)
 
 
@@ -121,7 +132,8 @@ def p_entradaIf(p):
                 | expLogicas
                 | expresionRelacional
      '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_entradaIf"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_entradaIf"
+
     reglas.append(linea)
 
 
@@ -132,7 +144,8 @@ def p_return(p):
                | valorBoolean
                | expresionRelacional
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_return"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_return"
+
     reglas.append(linea)
 
 
@@ -142,7 +155,8 @@ def p_entrada_fun(p):
                     | ID DOSPUNTOS tipos COMA entrada_fun
 
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_entrada_fun"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_entrada_fun"
+
     reglas.append(linea)
 
 
@@ -152,7 +166,8 @@ def p_tipos(p):
              | BOOLEAN
              | STRING
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_tipos"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_tipos"
+
     reglas.append(linea)
 
 
@@ -166,7 +181,8 @@ def p_ini_variable(p):
                     | variable ID EQUALS READLINE IPAR DPAR
 
     '''
-    linea = "Linea: " + str(p.lineno(1)) +  " Columna: " + str(p.lexpos(1)) + "p_ini_variable"
+    linea = "Linea: " + str(p.lineno(1)) +  " Columna: " + str(p.lexpos(1)) + " p_ini_variable"
+
     reglas.append(linea)
 
 
@@ -174,7 +190,8 @@ def p_imprimir(p):
     '''imprimir : PRINT IPAR elementosPrint DPAR
                 | PRINTLN IPAR elementosPrint DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_imprimir"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_imprimir"
+
     reglas.append(linea)
 
 
@@ -190,7 +207,7 @@ def p_elementosPrint(p):
                     | firstAndCap
                     | getMap
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_elementosPrint"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_elementosPrint"
     reglas.append(linea)
 
 # colecciones que se pueden imprimir (tuplas, listas,set,mapas) --
@@ -201,7 +218,7 @@ def p_imprimirColecciones(p):
                             | SETOF IPAR listElementos DPAR
 
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_imprimirColecciones"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_imprimirColecciones"
     reglas.append(linea)
 
 # Funciones de las colecciones (listas, maps, sets y strings) -- PAULA BENITES
@@ -213,7 +230,7 @@ def p_funColecciones(p):
                     | funMap
                     | getMap
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + "p_funColecciones"
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_funColecciones"
     reglas.append(linea)
 
 # indexacion de colecciones lista[1] -- PAULA BENITES
@@ -221,14 +238,14 @@ def p_indexCol(p):
     '''indexCol : ID ICOR ENTERO DCOR
                 | ID ICOR ID DCOR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_indexCol"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_indexCol"
     reglas.append(linea)
 
 # slicing a.slice(1..2) -- PAULA BENITES
 def p_slice(p):
     '''slice : ID PUNTO SLICE IPAR ENTERO PUNTO PUNTO ENTERO DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_slice"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_slice"
     reglas.append(linea)
 
 # size -- PAULA BENITES
@@ -236,14 +253,14 @@ def p_size(p):
     '''size : ID PUNTO SIZE
             | coleccion PUNTO SIZE
             '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_size"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_size"
     reglas.append(linea)
 # funcion isEmpty() -- PAULA BENITES
 def p_isEmpty(p):
     '''isEmpty : ID PUNTO ISEMPTY IPAR DPAR
             | coleccion PUNTO ISEMPTY IPAR DPAR
             '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_isEmpty"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_isEmpty"
     reglas.append(linea)
 
 # funcion a.get("cadena") -- PAULA BENITES
@@ -251,7 +268,7 @@ def p_getMap(p):
     ''' getMap : ID PUNTO GET IPAR CADENA_DE_CARACTERES DPAR
                 | MAPOF IPAR mapsElemento DPAR PUNTO GET IPAR CADENA_DE_CARACTERES DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_getMap"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_getMap"
     reglas.append(linea)
 
 
@@ -261,14 +278,16 @@ def p_funMap(p):
              | ID PUNTO VALUES
              | MAPOF IPAR mapsElemento DPAR PUNTO VALUES
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_funMap"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_funMap"
     reglas.append(linea)
 
 
 # inicializacion de maps
 def p_maps(p):
     'maps : variable ID EQUALS MAPOF IPAR mapsElemento DPAR'
-    reglas.append("p_maps")
+
+    linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_maps"
+    reglas.append(linea)
 
 # Elementos que se colocan dentro del maps mapOf(ELEMENTO)
 def p_mapsElemento(p):
@@ -276,7 +295,7 @@ def p_mapsElemento(p):
         mapsElemento : CADENA_DE_CARACTERES TO tuplaElemento
                      | CADENA_DE_CARACTERES TO tuplaElemento COMA mapsElemento
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) +"p_mapsElemento"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) +" p_mapsElemento"
     reglas.append(linea)
 
 # Inicializacion de tupla-- VICTOR ALVARADO
@@ -284,7 +303,7 @@ def p_tupla(p):
     '''
         tupla : variable IPAR ID COMA ID DPAR EQUALS PAIR IPAR tuplaElemento COMA tuplaElemento DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_tupla"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_tupla"
     reglas.append(linea)
 
 
@@ -296,21 +315,21 @@ def p_tuplaElemento(p) :
                       | LISTOF IPAR listElementos DPAR
                       | SETOF IPAR listElementos DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_tuplaElemento"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_tuplaElemento"
     reglas.append(linea)
 
 
 # Declaracion de un set(conjunto)--VICTOR ALVARADO
 def p_conjuntos(p):
     'conjuntos : variable ID EQUALS SETOF IPAR listElementos DPAR'
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_conjuntos"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_conjuntos"
     reglas.append(linea)
 
 
 # Declaracion de una lista-- VICTOR ALVARADO
 def p_list(p):
     'list : variable ID EQUALS LISTOF IPAR listElementos DPAR'
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_list"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_list"
     reglas.append(linea)
 
 # Elementos que se pueden poner dentro de una tupla- VICTOR ALVARADO
@@ -327,7 +346,7 @@ def p_listElementos(p):
                       | LISTOF IPAR listElementos DPAR
                       | SETOF IPAR listElementos DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_listElementos"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_listElementos"
     reglas.append(linea)
 
 # colecciones (list, set y maps)
@@ -336,7 +355,7 @@ def p_coleccion(p):
                 | SETOF IPAR listElementos DPAR
                 | MAPOF IPAR mapsElemento DPAR
                 '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_coleccion"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_coleccion"
     reglas.append(linea)
 
 # Definicion para el inicio de una variable-- VICTOR ALVARADO
@@ -344,7 +363,7 @@ def p_variable(p):
     '''variable : VAR
                  | VAL
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_variable"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_variable"
     reglas.append(linea)
 
 # Lectura de datos-- VICTOR ALVARADO
@@ -353,7 +372,7 @@ def p_readline(p):
         readline : READLINE IPAR DPAR
                  | variable ID EQUALS READLINE IPAR DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_readline"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_readline"
     reglas.append(linea)
 
 
@@ -363,7 +382,7 @@ def p_firstAndCap(p):
         firstAndCap : ID PUNTO FIRST IPAR DPAR
                     | ID PUNTO CAPITALIZE IPAR DPAR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_firstAndCap"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_firstAndCap"
     reglas.append(linea)
 
 # tipos de datos-- VICTOR ALVARADO
@@ -376,7 +395,7 @@ def p_tipoDeDato(p):
             | DOSPUNTOS BOOLEAN EQUALS expresionRelacional
             | tipoDeDato2
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_tipoDeDato"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_tipoDeDato"
     reglas.append(linea)
 
 #tipos de datos para declaracion de variables sin asignación de valores ej. val a : Int--VICTOR ALVARADO
@@ -386,21 +405,21 @@ def p_tipoDeDato2(p):
             | DOSPUNTOS STRING
             | DOSPUNTOS BOOLEAN
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_tipoDeDato2"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_tipoDeDato2"
     reglas.append(linea)
 
 def p_definicionVariables(p):
     '''definicionVariables : ID EQUALS valor
                            | ID EQUALS valorBoolean
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_definicionVariables"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_definicionVariables"
     reglas.append(linea)
 
 def p_expresion(p):
     '''expresion : valor
                  | ID
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_expresion"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_expresion"
     reglas.append(linea)
 
 # funcion para definir una expresion matematica--Scarlet Espinoza
@@ -408,7 +427,7 @@ def p_expresion_aritmetica(p):
     '''expresion : valor operadorMat expresion
                  | ID operadorMat expresion
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_expresion_aritmetica"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_expresion_aritmetica"
     reglas.append(linea)
 
 # funcion para definir una expresion relacional--Scarlet Espinoza
@@ -416,7 +435,7 @@ def p_expresion_relacional(p):
     '''expresionRelacional : elementoRelacional operadorRelacional elementoRelacional
 
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_expresion_relacional"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_expresion_relacional"
     reglas.append(linea)
 
 # Estos son los elementos que se pueden operar con operadores relacionales -- Scarlet Espinoza
@@ -426,7 +445,7 @@ def p_elementoRelacional(p):
                         | ID
                         | valorBoolean
        '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_elementoRelacional"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_elementoRelacional"
     reglas.append(linea)
 
 # funcion que define los operadores matematicos -- Scarlet Espinoza
@@ -437,7 +456,7 @@ def p_operadorMat(p):
                     | DIVIDE
     '''
 
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_operadorMat"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_operadorMat"
     reglas.append(linea)
 
 # funcion que define los elementos que tiene Valor --Scarlet Espinoza
@@ -446,7 +465,7 @@ def p_valor(p):
             | DECIMAL
             | CADENA_DE_CARACTERES
    '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_valor"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_valor"
     reglas.append(linea)
 
 # expresiones logicas true||true, true&&true -- PAULA BENITES
@@ -454,7 +473,7 @@ def p_expLogicas(p):
     '''expLogicas : boolID opLogico boolID
                 | NEGATION boolID
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_expLogicas"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_expLogicas"
     reglas.append(linea)
 
 # valor booleano y ID
@@ -462,7 +481,7 @@ def p_boolID(p):
     '''boolID : ID
             | valorBoolean
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_boolID"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_boolID"
     reglas.append(linea)
 
 # operadores Logicos ||, && y !
@@ -470,14 +489,14 @@ def p_opLogico(p):
     '''opLogico : AND
                 | OR
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_opLogico"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_opLogico"
     reglas.append(linea)
 
 def p_valorBoolean(p):
     '''valorBoolean : TRUE
                      | FALSE
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_valorBoolean"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_valorBoolean"
     reglas.append(linea)
 
 # funcion que define los tipos de operadores relacionales --ScarletEspinoza
@@ -489,11 +508,12 @@ def p_operadorRelacional(p):
                          | LRGEQ
                          | SMLEQ
     '''
-    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + "p_operadorRelacional"
+    linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_operadorRelacional"
     reglas.append(linea)
 # Error rule for syntax errors
 def p_error(p):
     reglas.append("Syntax error in input!")
+
 
 
 # file =open("Ejemplos/AlgoritmoBenites.txt")
