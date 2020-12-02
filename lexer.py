@@ -125,7 +125,7 @@ def leerLexer1(text):
         if not tk:
             break
         # linea = "Linea " + str(tk.lineno) + ": " + tk.type
-        linea = "token: " + tk.type
+        # linea = "token: " + tk.type
         columna = find_column(text,tk)
         linea = "Linea " + " "+ str(tk.lineno) + " " + "Columna " + str(columna-1) + " : " + tk.type
         # print(linea)
