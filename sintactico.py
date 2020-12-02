@@ -1,15 +1,16 @@
 import ply.yacc as yacc
 from lexer import tokens
 reglas = []
+
 #Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_algoritmo(p):
     '''algoritmo : cuerpo
                   | cuerpo algoritmo
     '''
-
     linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_algoritmo"
-
     reglas.append(linea)
+
+
 #Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_cuerpo(p):
     '''cuerpo : iniVariable
@@ -34,7 +35,6 @@ def p_cuerpo(p):
                   | ID operadorMat expresion
     '''
     linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_cuerpo"
-
     reglas.append(linea)
 
 
@@ -43,6 +43,7 @@ def p_fun(p):
     '''fun : FUN ID IPAR DPAR ILLAVE algoritmo DLLAVE
             | FUN ID IPAR entrada_fun DPAR ILLAVE algoritmo DLLAVE
             | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
+            | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR EQUALS return
     '''
@@ -179,6 +180,7 @@ def p_ini_variable(p):
                     | variable ID EQUALS expresionRelacional
                     | variable ID EQUALS funColecciones
                     | variable ID EQUALS READLINE IPAR DPAR
+                    | variable ID EQUALS expresion
 
     '''
     linea = "Linea: " + str(p.lineno(1)) +  " Columna: " + str(p.lexpos(1)) + " p_ini_variable"
@@ -411,6 +413,7 @@ def p_tipoDeDato2(p):
 def p_definicionVariables(p):
     '''definicionVariables : ID EQUALS valor
                            | ID EQUALS valorBoolean
+                           | ID EQUALS expresion
     '''
     linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_definicionVariables"
     reglas.append(linea)
@@ -441,7 +444,7 @@ def p_expresion_relacional(p):
 # Estos son los elementos que se pueden operar con operadores relacionales -- Scarlet Espinoza
 def p_elementoRelacional(p):
     '''elementoRelacional : ENTERO
-                        | DOUBLE
+                        | DECIMAL
                         | ID
                         | valorBoolean
        '''
@@ -510,9 +513,13 @@ def p_operadorRelacional(p):
     '''
     linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_operadorRelacional"
     reglas.append(linea)
+
 # Error rule for syntax errors
 def p_error(p):
-    reglas.append("Syntax error in input!")
+    if p is not None:
+        reglas.append("Linea: %s Columna: %s Error en: '%s'" % (p.lineno,p.lexpos, p.value))
+    else:
+        reglas.append('Error en syntax')
 
 
 
@@ -524,10 +531,10 @@ def p_error(p):
 def reglas_sintactico(s):
     parser = yacc.yacc()
     result = parser.parse(s,tracking=True)
-    print(result)
+    print(reglas)
     retorno_reglas = reglas.copy()
     reglas.clear()
-    # del reglas[:]
+
     return retorno_reglas
 
 

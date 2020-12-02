@@ -30,7 +30,7 @@ tokens = [
 
 # Regular expression rules for simple tokens -- Paula Benites
 t_ignore = ' \t'
-t_ignore_COMMENT = r'\/\/[a-zA-Z0-9 ]*\n  | \/\*[a-zA-Z0-9\s]*\*\/'
+t_ignore_COMMENT = r'\/\/[a-zA-Z0-9\-\: ]*\n|\/\*[a-zA-Z0-9\s]*\*\/'
 
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'
@@ -127,7 +127,7 @@ def leerLexer1(text):
         # linea = "Linea " + str(tk.lineno) + ": " + tk.type
         # linea = "token: " + tk.type
         columna = find_column(text,tk)
-        linea = "Linea " + " "+ str(tk.lineno) + " " + "Columna " + str(columna-1) + " : " + tk.type
+        linea = "Linea: "+ str(tk.lineno) + " Columna: " + str(columna-1) + " : " + tk.type
         # print(linea)
         l_tokens.append(linea)
     print(l_tokens[0])
