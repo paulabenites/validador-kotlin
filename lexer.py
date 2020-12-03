@@ -30,7 +30,7 @@ tokens = [
 
 # Regular expression rules for simple tokens -- Paula Benites
 t_ignore = ' \t'
-t_ignore_COMMENT = r'\/\/[a-zA-Z0-9\-\: ]*\n|\/\*[a-zA-Z0-9\s]*\*\/'
+t_ignore_COMMENT = r'\/\/.*\n|\/\*[a-zA-Z0-9\s\D]*\*\/'
 
 t_PLUS    = r'\+'
 t_ILLAVE    = r'\{'

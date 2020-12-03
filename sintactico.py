@@ -2,6 +2,7 @@ import ply.yacc as yacc
 from lexer import tokens
 reglas = []
 
+
 #Estructura final para el cuerpo de un algoritmo--PAULA BENITES-VICTOR ALVARADO-SCARLET ESPINOZA
 def p_algoritmo(p):
     '''algoritmo : cuerpo
@@ -37,14 +38,43 @@ def p_cuerpo(p):
     linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_cuerpo"
     reglas.append(linea)
 
+def p_cuerpoRecursivo(p):
+    '''cuerpoRecursivo : cuerpoEstructura
+                    | cuerpoEstructura cuerpoRecursivo
+
+
+    '''
+
+def p_cuerpoEstructura(p):
+    '''cuerpoEstructura : iniVariable
+                  | expresionRelacional
+                  | imprimir
+                  | readline
+                  | firstAndCap
+                  | list
+                  | conjuntos
+                  | tupla
+                  | maps
+                  | funColecciones
+                  | expLogicas
+                  | if
+                  | for
+                  | while
+                  | valorIncDec
+                  | valorInDecAsignacion
+                  | definicionVariables
+                  | valor operadorMat expresion
+                  | ID operadorMat expresion
+    '''
+
 
 #declara una funcion -- Scarlet Espinoza
 def p_fun(p):
-    '''fun : FUN ID IPAR DPAR ILLAVE algoritmo DLLAVE
-            | FUN ID IPAR entrada_fun DPAR ILLAVE algoritmo DLLAVE
-            | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
+    '''fun : FUN ID IPAR DPAR ILLAVE cuerpoRecursivo DLLAVE
+            | FUN ID IPAR entrada_fun DPAR ILLAVE cuerpoRecursivo DLLAVE
+            | FUN ID IPAR DPAR DOSPUNTOS tipos ILLAVE cuerpoRecursivo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE RETURN return DLLAVE
-            | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE algoritmo RETURN return DLLAVE
+            | FUN ID IPAR entrada_fun DPAR DOSPUNTOS tipos ILLAVE cuerpoRecursivo RETURN return DLLAVE
             | FUN ID IPAR entrada_fun DPAR EQUALS return
     '''
     linea = "Linea: " + str(p.lineno(1))  + " Columna: " + str(p.lexpos(1)) + " p_fun"
@@ -53,7 +83,7 @@ def p_fun(p):
 
 # Declara un while -- Scarlet Espinoza
 def p_while(p):
-    'while : WHILE IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE '
+    'while : WHILE IPAR entradaIf DPAR ILLAVE cuerpoRecursivo DLLAVE '
     linea = "Linea: " + str(p.lineno(1))  + " Columna: " + str(p.lexpos(1)) + " p_while"
 
     reglas.append(linea)
@@ -90,7 +120,7 @@ def p_incDecAsignacion(p):
 
 #Declara un for -- Victor Alvarado
 def p_for(p):
-    'for : FOR condicionFor ILLAVE algoritmo DLLAVE'
+    'for : FOR condicionFor ILLAVE cuerpoRecursivo DLLAVE'
     linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_for"
 
     reglas.append(linea)
@@ -108,9 +138,9 @@ def p_condicionFor(p):
 
 # definicion de if -- Paula Benites
 def p_if(p):
-    ''' if : IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE
+    ''' if : IF IPAR entradaIf DPAR ILLAVE cuerpoRecursivo DLLAVE
             | IF IPAR entradaIf DPAR return
-            | IF IPAR entradaIf DPAR ILLAVE algoritmo DLLAVE else
+            | IF IPAR entradaIf DPAR ILLAVE cuerpoRecursivo DLLAVE else
             | IF IPAR entradaIf DPAR return else
     '''
     linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_if"
@@ -119,7 +149,7 @@ def p_if(p):
 
 # definicion de ELSE
 def p_else(p):
-    '''else : ELSE ILLAVE algoritmo DLLAVE
+    '''else : ELSE ILLAVE cuerpoRecursivo DLLAVE
             | ELSE return
     '''
     linea = "Linea: " + str(p.lineno(1)) + " Columna: " + str(p.lexpos(1)) + " p_else"
