@@ -466,6 +466,7 @@ def p_expresion_aritmetica(p):
 # funcion para definir una expresion relacional--Scarlet Espinoza
 def p_expresion_relacional(p):
     '''expresionRelacional : elementoRelacional operadorRelacional elementoRelacional
+                            | valorBoolean
 
     '''
     linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_expresion_relacional"
@@ -476,7 +477,7 @@ def p_elementoRelacional(p):
     '''elementoRelacional : ENTERO
                         | DECIMAL
                         | ID
-                        | valorBoolean
+
        '''
     linea = "Linea: " + str(p.lineno(1)) + " " + "Columna: " + str(p.lexpos(1)) + " p_elementoRelacional"
     reglas.append(linea)
